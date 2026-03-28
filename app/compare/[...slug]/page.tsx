@@ -1,12 +1,25 @@
+import { Car } from "@/lib/Car";
+import { getAllCarYml } from "@/lib/utils";
 import { TableDemo } from "@/src/TableDemo";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 }) {
-  const { slug: carIds } = await params;
-  console.log(carIds);
+  const { slug: carNames } = await params;
+  const carMap = await getAllCarYml();
+
+  // get detail spec of requested cars
+  const carsPromises: Promise<Car>[] = [];
+  carNames.forEach((name) => {
+    const file = carMap.get(name);
+    if (file) {
+      carsPromises.push(Car.readYml(file));
+    }
+  });
+  const cars = await Promise.all(carsPromises);
+
   return (
     <>
       <TableDemo />

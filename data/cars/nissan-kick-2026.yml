@@ -13,6 +13,7 @@ physical:
 engine:
   name: HR12DE
   hybrid: true
+  fuelType: gasoline 
   displacement: 1198
 
 performance:
@@ -25,7 +26,7 @@ trims:
     keyless: true
     bsm: true
     ldw: true
-    ldp: true
+    la: true
     acc: true
 - name: e-Power VL
   price: 849900
