@@ -4,18 +4,14 @@ import { Engine, Physical, Trim, YmlFile } from "./types";
 import { readYmlVariable } from "./utils";
 
 export class Car {
-  filename?: string;
+  filename: string = "";
   name?: string;
-  manufacture?: string;
+  manufacture: string = "";
   releaseDate?: string;
   physical?: Physical;
   engine?: Engine;
   performance?: Performance;
-  trims: Trim[];
-
-  constructor() {
-    this.trims = [];
-  }
+  trims: Trim[] = [];
 
   static async readYml(file: YmlFile): Promise<Car> {
     // fetch variable files
