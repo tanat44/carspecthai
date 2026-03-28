@@ -1,0 +1,47 @@
+name: Kick
+manufacture: Nissan
+releaseDate: 2026
+
+physical:
+  width: 1760
+  length: 4300
+  height: 1610
+  wheelbase: 2620
+  floorHeight: 175
+  weight: 1360
+
+engine:
+  name: HR12DE
+  hybrid: true
+  displacement: 1198
+
+performance:
+  to100: 9.5
+  
+trims: 
+- name: e-Power V
+  price: 789000
+  options: &v
+    keyless: true
+    bsm: true
+    ldw: true
+    ldp: true
+    acc: true
+- name: e-Power VL
+  price: 849900
+  options:
+    options: &vl
+      <<: *v
+      360camera: true
+
+- name: e-Power SV
+  price: 899000
+  options:
+    <<: *vl
+    tpms: true
+    raeb: true
+
+reviews:
+  - <<: *sourceAutoLife
+    link: https://youtu.be/lTRWGTQDklA?si=pCdPDAFLBwQrLyiY
+    

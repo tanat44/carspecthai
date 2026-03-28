@@ -1,0 +1,43 @@
+name: Camry
+manufacture: Toyota
+releaseDate: 2025
+
+physical:
+  width: 1840
+  length: 4920
+  height: 1445
+  wheelbase: 2825
+  floorHeight: 135
+
+engine:
+  name: A25A-FXS
+  hybrid: true
+  displacement: 2487
+  battery:
+    type: lion
+    capacityAh: 4
+
+performance:
+  to100: 7.79
+    source: *sourceHlm
+  
+trims: 
+- name: HEV Smart
+  price: 1475000
+- name: HEV Premium
+  price: 1659000
+  sunRoof: 
+    type: panoramic
+    sunShade: true
+- name: HEV Premium Luxury
+  price: 1809000
+  sunRoof: 
+    type: panoramic
+    sunShade: true
+
+reviews:
+  - <<: *sourceHlm
+    link: https://youtu.be/IJG9cCTfreY?si=UtIF0Z9lTFey-eQn
+  - <<: *sourceTheClip
+    link: https://youtu.be/bRd2wp0Ah-I?si=LWH-xkPtr2DeHW00
+    

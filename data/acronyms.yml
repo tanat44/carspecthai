@@ -1,0 +1,19 @@
+acronyms:
+  bsm:
+    name: Blind Spot Monitoring
+    nameTh: เตือนจุดอับสายตา
+  ldw:
+    name: Lane Departure Warning
+    nameTh: เตือนออกนอกเลน
+  la: 
+    name: Lane Assist
+    nameTh: คุมรถในเลน
+  acc:
+    name: Adaptive Cruise Control
+    nameTh: คุมความเร็วอัตโนมัติแบบแปลผลัน
+  raeb:
+    name: Rear Automatic Emergency Breaking
+    nameTh: เบรกฉุกเฉินอัตโนมัติตอนถอย
+  tpms:
+    name: Tyre Pressure Monitoring System
+    nameTh: วัดลมยาง

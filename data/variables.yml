@@ -1,0 +1,16 @@
+variables:
+  sources:
+    - &sourceHlm
+      name: Headlight Magazine
+      link: https://www.headlightmag.com/
+    - &sourceCarnest
+      name: Carnest
+      link: https://www.facebook.com/CarnestOfficial/
+    - &sourceTheClip
+      name: TheClip Car Review
+      link: https://www.youtube.com/@THECLIPCarReview
+    - &sourceAutoLife
+      name: Auto Life Thailand
+      link: https://autolifethailand.tv/
+
+

@@ -1,10 +1,7 @@
-import { TableDemo } from "@/src/TableDemo";
-
 export default function Home() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <TableDemo />
+      <h1>Welcome to car spec thai!</h1>
     </>
   );
 }
