@@ -1,11 +1,18 @@
 import { Car } from "@/lib/Car";
+import { CarLibrary } from "@/lib/CarLibrary";
 import { getAllCarFiles } from "@/lib/utils";
 import { TableDemo } from "@/src/TableDemo";
+
+type Slug = string[];
+
+type Props = {
+  slug: Slug;
+};
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug: Slug }>;
 }) {
   const { slug: carNames } = await params;
   const carFiles = await getAllCarFiles();
@@ -25,4 +32,18 @@ export default async function Page({
       <TableDemo />
     </>
   );
+}
+
+export async function generateStaticParams() {
+  const files = await getAllCarFiles();
+  const lib = await CarLibrary.load(files);
+
+  const slugs: Props[] = [];
+  const cars = lib.allCars;
+  cars.forEach((car) => {
+    car.trims.values().forEach((trim) => {
+      slugs.push({ slug: [`${car.filename}?trim=${trim.name}`] });
+    });
+  });
+  return slugs;
 }
