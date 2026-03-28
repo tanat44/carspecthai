@@ -38,9 +38,3 @@ export type Options = {
   tpms?: boolean;
   raeb?: boolean;
 };
-
-export type Trim = {
-  name: string;
-  price: number;
-  options?: Options;
-};

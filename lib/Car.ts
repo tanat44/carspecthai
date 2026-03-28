@@ -1,7 +1,10 @@
 import { promises as fs } from "fs";
 import { parse } from "yaml";
-import { Engine, Physical, Trim, YmlFile } from "./types";
+import { Trim } from "./Trim";
+import { Engine, Physical, YmlFile } from "./types";
 import { readYmlVariable } from "./utils";
+
+const THIS_YEAR = new Date().getFullYear();
 
 export class Car {
   filename: string = "";
@@ -11,7 +14,7 @@ export class Car {
   physical?: Physical;
   engine?: Engine;
   performance?: Performance;
-  trims: Trim[] = [];
+  trims: Map<string, Trim> = new Map();
 
   static async readYml(file: YmlFile): Promise<Car> {
     // fetch variable files
@@ -25,11 +28,26 @@ export class Car {
     car.filename = file.name;
     car.name = object.name;
     car.manufacture = object.manufacture;
-    car.releaseDate = object.releaseDate;
+    car.releaseDate = new String(object.releaseDate).toString();
     car.physical = object.physical;
     car.engine = object.engine;
     car.performance = object.performance;
-    car.trims = object.trims;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    car.trims = object?.trims.map((trim: any) => Trim.parse(trim));
     return car;
+  }
+
+  get yearsOld(): number {
+    if (!this.releaseDate) return Infinity;
+
+    const releaseYear = new Date(this.releaseDate).getFullYear();
+    return THIS_YEAR - releaseYear;
+  }
+
+  priceText(trimName: string): string {
+    const trim = this.trims.get(trimName);
+    if (!trim) return "-";
+
+    return trim.priceText;
   }
 }
