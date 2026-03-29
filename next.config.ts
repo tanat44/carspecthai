@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  output: "export", // for static site generator
   images: {
     unoptimized: true,
   },
-  // output: "standalone",
+  trailingSlash: true, // to prevent .html suffix on generated route
   turbopack: {
     resolveAlias: {
       fs: { browser: "./empty.js" },

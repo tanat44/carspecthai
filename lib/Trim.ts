@@ -20,4 +20,14 @@ export class Trim {
     trim.options = data.options;
     return trim;
   }
+
+  get slug(): string {
+    const slug = this.name
+      .toLowerCase() // Convert to lowercase
+      .replace(/[^\w\s-]/g, "") // Remove non-word characters except spaces and hyphens
+      .trim() // Trim spaces
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .slice(0, 50); // Limit to 50 characters
+    return slug;
+  }
 }

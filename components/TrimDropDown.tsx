@@ -23,7 +23,7 @@ export function TrimDropDown({ children, car }: Props) {
         <DropdownMenuGroup>
           <DropdownMenuLabel>รุ่นย่อย</DropdownMenuLabel>
           {Array.from(car.trims.values()).map((trim) => (
-            <Link href={`compare/${car.filename}/${trim.name}`} key={trim.name}>
+            <Link href={`compare/${car.filename}/${trim.slug}`} key={trim.name}>
               <DropdownMenuItem>
                 <div className="flex flex-row w-full items-end">
                   <div>{trim.name}</div>

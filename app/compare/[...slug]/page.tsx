@@ -1,12 +1,11 @@
-import { Car } from "@/lib/Car";
+import { TableDemo } from "@/components/TableDemo";
 import { CarLibrary } from "@/lib/CarLibrary";
 import { getAllCarFiles } from "@/lib/utils";
-import { TableDemo } from "@/src/TableDemo";
 
 type Slug = string[];
 
 type Props = {
-  slug: Slug;
+  slug?: Slug;
 };
 
 export default async function Page({
@@ -14,18 +13,19 @@ export default async function Page({
 }: {
   params: Promise<{ slug: Slug }>;
 }) {
-  const { slug: carNames } = await params;
-  const carFiles = await getAllCarFiles();
+  const { slug } = await params;
+  console.log(slug);
+  // const carFiles = await getAllCarFiles();
 
-  // get detail spec of requested cars
-  const carsPromises: Promise<Car>[] = [];
-  carNames.forEach((name) => {
-    const file = carFiles.get(name);
-    if (file) {
-      carsPromises.push(Car.readYml(file));
-    }
-  });
-  const cars = await Promise.all(carsPromises);
+  // // get detail spec of requested cars
+  // const carsPromises: Promise<Car>[] = [];
+  // carNames.forEach((name) => {
+  //   const file = carFiles.get(name);
+  //   if (file) {
+  //     carsPromises.push(Car.readYml(file));
+  //   }
+  // });
+  // const cars = await Promise.all(carsPromises);
 
   return (
     <>
@@ -35,14 +35,16 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
+  // for testing ssg buiid
+  // return [{ slug: ["asdf", "1234"] }];
+
   const files = await getAllCarFiles();
   const lib = await CarLibrary.load(files);
-
   const slugs: Props[] = [];
   const cars = lib.allCars;
   cars.forEach((car) => {
     car.trims.values().forEach((trim) => {
-      slugs.push({ slug: [encodeURI(car.filename), encodeURI(trim.name)] });
+      slugs.push({ slug: [car.filename, trim.slug] });
     });
   });
   return slugs;
