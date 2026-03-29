@@ -23,13 +23,13 @@ export function CarCard({ car }: Props) {
           <div>
             <img
               src={`/cars/photos/${car.filename}.png`}
-              alt={`${car.manufacture} ${car.name} (${car.releaseDate})`}
+              alt={`${car.manufacture} ${car.name} (${car.spec?.releaseDate})`}
               className="relative z-20 aspect-video w-full object-cover"
             />
             <Badge
               className={`absolute right-2 top-2 z-20 ${yearsToColor(car.yearsOld)}`}
             >
-              {car.releaseDate}
+              {car.spec?.releaseDate}
             </Badge>
           </div>
 
