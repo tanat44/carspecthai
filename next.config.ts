@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  images: {
+    unoptimized: true,
+  },
   // output: "standalone",
   turbopack: {
     resolveAlias: {

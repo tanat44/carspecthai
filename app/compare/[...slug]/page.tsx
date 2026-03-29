@@ -42,7 +42,7 @@ export async function generateStaticParams() {
   const cars = lib.allCars;
   cars.forEach((car) => {
     car.trims.values().forEach((trim) => {
-      slugs.push({ slug: [`${car.filename}?trim=${trim.name}`] });
+      slugs.push({ slug: [encodeURI(car.filename), encodeURI(trim.name)] });
     });
   });
   return slugs;
