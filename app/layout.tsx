@@ -19,9 +19,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Carspecthai-คาร์สเปกไทย",
+  title: "Carspecthai คาร์สเปกไทย",
   description:
-    "เพจเดียวที่ให้คุณเปรียบเทียบรถยนต์จากทุกค่าย ทุกยี่ห้อ ที่วางขายในเมืองไทย อย่างเจาะลึก",
+    "เพจเดียวที่ให้คุณเปรียบเทียบรถยนต์จากทุกค่าย ทุกยี่ห้อที่วางขายในเมืองไทย อย่างเจาะลึก",
 };
 
 export default function RootLayout({

@@ -1,11 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import { Car } from "@/lib/Car";
+import { GalleryCar } from "@/lib/Gallery";
+import { ModelTrimSlug } from "@/lib/types";
 import { TrimDropDown } from "./TrimDropDown";
 import { Button } from "./ui/button";
 
 type Props = {
-  car: Car;
+  car: GalleryCar;
+  onClick?: (trim: ModelTrimSlug) => void;
 };
 
 function yearsToColor(years: number): string {
@@ -15,28 +17,26 @@ function yearsToColor(years: number): string {
   return "bg-olive-200";
 }
 
-export function CarCard({ car }: Props) {
+export function CarCard({ car, onClick }: Props) {
   return (
-    <TrimDropDown car={car}>
+    <TrimDropDown car={car} onClick={onClick}>
       <Button className="bg-transparent w-full h-full">
         <Card className="relative mx-auto w-full max-w-3xs pt-0 gap-2 pb-2 cursor-pointer">
           <div>
             <img
-              src={`/cars/photos/${car.filename}.png`}
-              alt={`${car.manufacture} ${car.name} (${car.spec?.releaseDate})`}
+              src={`/cars/photos/${car.slug}.png`}
+              alt={`${car.name}`}
               className="relative z-20 aspect-video w-full object-cover"
             />
             <Badge
-              className={`absolute right-2 top-2 z-20 ${yearsToColor(car.yearsOld)}`}
+              className={`absolute right-2 top-2 z-20 ${yearsToColor(car.releaseYear)}`}
             >
-              {car.spec?.releaseDate}
+              {car.releaseYear}
             </Badge>
           </div>
 
           <CardHeader>
-            <CardTitle className="text-xs">
-              {car.manufacture} {car.name}
-            </CardTitle>
+            <CardTitle className="text-xs">{car.name}</CardTitle>
           </CardHeader>
         </Card>
       </Button>

@@ -3,30 +3,31 @@ import { promises as fs } from "fs";
 import path from "path";
 import { twMerge } from "tailwind-merge";
 import { parse } from "yaml";
-import { YmlFile } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export async function getAllCarFiles(): Promise<Map<string, YmlFile>> {
-  const prefix = [process.cwd(), "data", "cars"];
-  const dir = path.join(...prefix);
+export function carYmlDir() {
+  return path.join(process.cwd(), "data", "cars");
+}
+
+export function carYmlPath(name: string) {
+  return path.join(carYmlDir(), `${name}.yml`);
+}
+
+export async function getAllCarFilePaths(): Promise<string[]> {
+  const dir = carYmlDir();
   const files = await fs.readdir(dir, {
     withFileTypes: true,
     recursive: false,
   });
-  const output = new Map<string, YmlFile>();
+  const paths: string[] = [];
   files.forEach((file) => {
     if (file.isDirectory()) return;
-
-    const name = file.name.replace(".yml", "");
-    output.set(name, {
-      name,
-      path: path.join(...prefix, file.name),
-    });
+    paths.push(path.join(dir, file.name));
   });
-  return output;
+  return paths;
 }
 
 export async function readYmlVariable(): Promise<string> {

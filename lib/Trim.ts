@@ -1,5 +1,6 @@
 import { Car } from "./Car";
 import { UNDEFINED_NAME } from "./consts";
+import { GalleryTrim } from "./Gallery";
 import { Spec } from "./Spec";
 
 export class Trim {
@@ -16,6 +17,15 @@ export class Trim {
     return trim;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static parsePlain(data: any): Trim {
+    const trim = new Trim();
+    trim.name = data.name;
+    trim.car = Car.parse(data.car);
+    trim.spec = Spec.parse(data);
+    return trim;
+  }
+
   get slug(): string {
     const slug = this.name
       .toLowerCase() // Convert to lowercase
@@ -24,6 +34,10 @@ export class Trim {
       .replace(/\s+/g, "-") // Replace spaces with hyphens
       .slice(0, 50); // Limit to 50 characters
     return slug;
+  }
+
+  get fullName(): string {
+    return `${this.car?.name} ${this.name}`;
   }
 
   get priceText() {
@@ -51,7 +65,14 @@ export class Trim {
   }
 
   get releaseDate() {
-    console.log(123, this.name, this.car);
     return this.spec?.releaseDate ?? this.car?.spec?.releaseDate;
+  }
+
+  get galleryTrim(): GalleryTrim {
+    return {
+      name: this.name,
+      slug: this.slug,
+      price: this.priceText ?? "-",
+    };
   }
 }

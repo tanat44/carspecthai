@@ -38,3 +38,8 @@ export type Options = {
   tpms?: boolean;
   raeb?: boolean;
 };
+
+export type ModelTrimSlug = {
+  modelSlug: string;
+  trimSlug: string;
+};

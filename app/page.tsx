@@ -1,7 +1,10 @@
-import { CarGallery } from "@/components/CarGallery";
+import { RootGallery } from "@/app/RootGallery";
+import { CarLibrary } from "@/lib/CarLibrary";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
+  const library = await CarLibrary.instance();
+
   return (
     <div className="h-lvh flex flex-col items-center gap-4 px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
       <Image src="/icon.png" width={100} height={100} alt="carspecthai icon" />
@@ -12,7 +15,7 @@ export default function Home() {
         carspecthai เพจเดียวที่ให้คุณเปรียบเทียบรถยนต์จากทุกค่าย ทุกยี่ห้อ
         ที่วางขายในเมืองไทย อย่างเจาะลึก ไม่ว่าจะน้ำมัน อีวี กระบะ ไฮบริด
       </p>
-      <CarGallery />
+      <RootGallery gallery={library.gallery} />
     </div>
   );
 }

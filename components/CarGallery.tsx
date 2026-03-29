@@ -1,15 +1,23 @@
-import { CarLibrary } from "@/lib/CarLibrary";
-import { getAllCarFiles } from "@/lib/utils";
+"use client";
+
+import { Gallery } from "@/lib/Gallery";
+import { ModelTrimSlug } from "@/lib/types";
 import { ManufactureScroll } from "./ManufactureScroll";
 
-export async function CarGallery() {
-  const carFiles = await getAllCarFiles();
-  const carLib = await CarLibrary.load(carFiles);
+type Props = {
+  gallery: Gallery;
+  onClick?: (trim: ModelTrimSlug) => void;
+};
 
+export function CarGallery({ gallery, onClick }: Props) {
   return (
     <div className="flex flex-row gap-4">
-      {Object.entries(carLib.byManufacture).map(([manufacture, cars]) => (
-        <ManufactureScroll key={manufacture} cars={cars} name={manufacture} />
+      {gallery.manufactures.map((manufacture) => (
+        <ManufactureScroll
+          key={manufacture.name}
+          manufacture={manufacture}
+          onClick={onClick}
+        />
       ))}
     </div>
   );
