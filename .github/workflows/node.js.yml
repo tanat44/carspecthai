@@ -14,23 +14,21 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
+    
     - uses: actions/checkout@v4
+    
     - uses: actions/setup-node@v4
       with:
         node-version: 22.x
         cache: 'npm'
+        
     - name: install packages
-      run: |
-        npm ci 
-        npm i -D wangler
+      run: npm ci
+      
     - name: build application
       run: npm run build
+      
     - name: deploy cloudflare
       uses: cloudflare/wrangler-action@v3
       with:
