@@ -16,7 +16,7 @@ import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { Gallery } from "@/lib/Gallery";
 import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { PickCarDialog } from "./PickCarDialog";
 
 const invoices = [
@@ -82,8 +82,9 @@ function getTitle(trims: Trim[]): string {
 
 export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
   const path = usePathname();
+  const router = useRouter();
   function handleCarPick(trim: ModelTrimSlug) {
-    redirect(`${path}/${trim.modelSlug}/${trim.trimSlug}`);
+    router.push(`${path}/${trim.modelSlug}/${trim.trimSlug}`);
   }
 
   const cars = plainCars.map((data) => Car.parse(data));

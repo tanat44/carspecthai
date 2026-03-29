@@ -16,7 +16,7 @@ export default async function Page({
 }) {
   // parse slug into compare trims
   const { slug } = await params;
-  if (slug.length % 2 !== 0) redirect("/", RedirectType.replace);
+  if (slug.length % 2 !== 0) redirect("/", RedirectType.push);
   const queryTrimSlugs: ModelTrimSlug[] = [];
   const queryModels = new Set<string>();
   for (let i = 0; i < slug.length; i += 2) {

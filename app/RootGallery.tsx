@@ -2,7 +2,7 @@
 
 import { Gallery } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { CarGallery } from "../components/CarGallery";
 
 type Props = {
@@ -10,8 +10,10 @@ type Props = {
 };
 
 export function RootGallery({ gallery }: Props) {
+  const router = useRouter();
+
   function handleClick(trim: ModelTrimSlug) {
-    redirect(`/compare/${trim.modelSlug}/${trim.trimSlug}`);
+    router.push(`/compare/${trim.modelSlug}/${trim.trimSlug}`);
   }
   return <CarGallery gallery={gallery} onClick={handleClick} />;
 }
