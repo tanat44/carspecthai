@@ -3,9 +3,7 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -96,7 +94,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
   }
 
   return (
-    <div className="h-lvh flex flex-col items-center  px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
+    <div className="h-lvh flex flex-col items-center px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
       <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl">
         เปรียบเทียบ
       </h1>{" "}
@@ -112,33 +110,27 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
       )}
       <div className="pt-4"></div>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[100px]">ฟีเจอร์</TableHead>
+            {trims.map((trim) => (
+              <TableHead key={trim.slug}>
+                {trim.car?.manufacture} {trim.car?.name} ({trim.name})
+              </TableHead>
+            ))}
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">
-                {invoice.totalAmount}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
           <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
+            <TableCell className="font-medium">พลังงาน</TableCell>
+            {trims.map((trim) => (
+              <TableHead key={trim.slug}>
+                {trim.engine && "ไฮบริด "}
+                {trim.engine?.fuelType}
+              </TableHead>
+            ))}
           </TableRow>
-        </TableFooter>
+        </TableBody>
       </Table>
     </div>
   );

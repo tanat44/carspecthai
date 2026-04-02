@@ -17,8 +17,8 @@ export function CarGallery({ gallery, disabledCars = [], onClick }: Props) {
         <ManufactureScroll
           key={manufacture.name}
           manufacture={manufacture}
-          onClick={onClick}
           disabledCars={disabledCars}
+          onClick={onClick}
         />
       ))}
     </div>
