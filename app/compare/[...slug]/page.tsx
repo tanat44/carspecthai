@@ -80,7 +80,7 @@ export async function generateStaticParams() {
   // generate ModelTrim
   const modelTrims: ModelTrimSlug[] = [];
   lib.allCars.forEach((car) => {
-    car.trims.values().forEach((trim) => {
+    Array.from(car.trims.values()).forEach((trim) => {
       modelTrims.push({ modelSlug: car.slug, trimSlug: trim.slug });
     });
   });

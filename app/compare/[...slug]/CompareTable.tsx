@@ -104,7 +104,11 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
         {getTitle(trims)}
       </p>
       {queryTrimSlugs.length < MAX_COMPARE_COUNT && (
-        <PickCarDialog gallery={gallery} onCarPick={handleCarPick} />
+        <PickCarDialog
+          gallery={gallery}
+          onCarPick={handleCarPick}
+          disabledCars={queryTrimSlugs}
+        />
       )}
       <div className="pt-4"></div>
       <Table>

@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 
 type Props = {
   car: GalleryCar;
+  disabledCars: ModelTrimSlug[];
   onClick?: (trim: ModelTrimSlug) => void;
 };
 
@@ -17,9 +18,9 @@ function yearsToColor(years: number): string {
   return "bg-olive-200";
 }
 
-export function CarCard({ car, onClick }: Props) {
+export function CarCard({ car, disabledCars, onClick }: Props) {
   return (
-    <TrimDropDown car={car} onClick={onClick}>
+    <TrimDropDown car={car} onClick={onClick} disabledCars={disabledCars}>
       <Button className="bg-transparent w-full h-full">
         <Card className="relative mx-auto w-full max-w-3xs pt-0 gap-2 pb-2 cursor-pointer">
           <div>

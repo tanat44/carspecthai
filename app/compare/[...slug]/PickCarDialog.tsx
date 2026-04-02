@@ -16,10 +16,11 @@ import { ModelTrimSlug } from "@/lib/types";
 
 type Props = {
   gallery: Gallery;
+  disabledCars: ModelTrimSlug[];
   onCarPick: (trim: ModelTrimSlug) => void;
 };
 
-export function PickCarDialog({ gallery, onCarPick }: Props) {
+export function PickCarDialog({ gallery, disabledCars, onCarPick }: Props) {
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline">เพิ่มรถ</Button>} />
@@ -31,7 +32,11 @@ export function PickCarDialog({ gallery, onCarPick }: Props) {
           </DialogDescription>
         </DialogHeader>
         <FieldGroup>
-          <CarGallery gallery={gallery} onClick={onCarPick} />
+          <CarGallery
+            gallery={gallery}
+            onClick={onCarPick}
+            disabledCars={disabledCars}
+          />
         </FieldGroup>
         <DialogFooter>
           <DialogClose render={<Button variant="outline">ปิด</Button>} />

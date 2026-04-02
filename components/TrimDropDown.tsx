@@ -13,10 +13,11 @@ import { ReactElement } from "react";
 type Props = {
   children: ReactElement;
   car: GalleryCar;
+  disabledCars: ModelTrimSlug[];
   onClick?: (trim: ModelTrimSlug) => void;
 };
 
-export function TrimDropDown({ children, car, onClick }: Props) {
+export function TrimDropDown({ children, car, disabledCars, onClick }: Props) {
   function handleClick(trim: GalleryTrim) {
     if (onClick)
       onClick({
@@ -31,18 +32,27 @@ export function TrimDropDown({ children, car, onClick }: Props) {
       <DropdownMenuContent className="w-50">
         <DropdownMenuGroup>
           <DropdownMenuLabel>รุ่นย่อย</DropdownMenuLabel>
-          {Array.from(car.trims.values()).map((trim) => (
-            // <Link href={`compare/${car.filename}/${trim.slug}`} key={trim.name}>
-            <DropdownMenuItem key={trim.name} onClick={() => handleClick(trim)}>
-              <div className="flex flex-row w-full items-end">
-                <div>{trim.name}</div>
-                <div className="flex-grow text-right text-xs text-muted-foreground">
-                  {trim.price}
+          {Array.from(car.trims.values()).map((trim) => {
+            const disabled = !!disabledCars.find(
+              (disabledCar) =>
+                disabledCar.trimSlug === trim.slug &&
+                disabledCar.modelSlug === car.slug,
+            );
+            return (
+              <DropdownMenuItem
+                key={trim.name}
+                onClick={() => handleClick(trim)}
+                disabled={disabled}
+              >
+                <div className="flex flex-row w-full items-end">
+                  <div>{trim.name}</div>
+                  <div className="flex-grow text-right text-xs text-muted-foreground">
+                    {trim.price}
+                  </div>
                 </div>
-              </div>
-            </DropdownMenuItem>
-            // </Link>
-          ))}
+              </DropdownMenuItem>
+            );
+          })}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
