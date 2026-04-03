@@ -1,5 +1,6 @@
+import { Size } from "@base-ui/react";
 import { Car } from "./Car";
-import { UNDEFINED_NAME } from "./consts";
+import { DRAW_SCALE, UNDEFINED_NAME } from "./consts";
 import { GalleryTrim } from "./Gallery";
 import { Spec } from "./Spec";
 
@@ -34,6 +35,20 @@ export class Trim {
       .replace(/\s+/g, "-") // Replace spaces with hyphens
       .slice(0, 50); // Limit to 50 characters
     return slug;
+  }
+
+  get canvasFrontSize(): Size {
+    return {
+      width: (this.physical?.width ?? 0) * DRAW_SCALE,
+      height: (this.physical?.height ?? 0) * DRAW_SCALE,
+    };
+  }
+
+  get canvasSideSize(): Size {
+    return {
+      width: (this.physical?.length ?? 0) * DRAW_SCALE,
+      height: (this.physical?.height ?? 0) * DRAW_SCALE,
+    };
   }
 
   get fullName(): string {

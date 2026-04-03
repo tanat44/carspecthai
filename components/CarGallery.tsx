@@ -6,7 +6,7 @@ import { ManufactureScroll } from "./ManufactureScroll";
 
 type Props = {
   gallery: Gallery;
-  disabledCars: ModelTrimSlug[];
+  disabledCars?: ModelTrimSlug[];
   onClick?: (trim: ModelTrimSlug) => void;
 };
 

@@ -16,6 +16,9 @@ import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
 import { usePathname, useRouter } from "next/navigation";
 import { PickCarDialog } from "./PickCarDialog";
+import { FrontCompare } from "@/components/dimension/FrontCompare";
+import { SideCompare } from "@/components/dimension/SideCompare";
+import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
 
 const invoices = [
   {
@@ -93,6 +96,8 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
     if (trim) trims.push(trim);
   }
 
+  const referenceTrim = trims[0];
+
   return (
     <div className="h-lvh flex flex-col items-center px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
       <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl">
@@ -127,6 +132,38 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
               <TableHead key={trim.slug}>
                 {trim.engine && "ไฮบริด "}
                 {trim.engine?.fuelType}
+              </TableHead>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium">มิติด้านหน้า</TableCell>
+            {trims.map((trim) => (
+              <TableHead key={trim.slug}>
+                <FrontCompare
+                  trim={trim}
+                  referenceTrim={referenceTrim}
+                  showReference={trim !== referenceTrim}
+                />
+              </TableHead>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium">มิติด้านข้าง</TableCell>
+            {trims.map((trim) => (
+              <TableHead key={trim.slug}>
+                <SideCompare
+                  trim={trim}
+                  referenceTrim={referenceTrim}
+                  showReference={trim !== referenceTrim}
+                />
+              </TableHead>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium">ระยะฐานล้อ</TableCell>
+            {trims.map((trim) => (
+              <TableHead key={trim.slug}>
+                <WheelBaseCompare trim={trim} referenceTrim={referenceTrim} />
               </TableHead>
             ))}
           </TableRow>
