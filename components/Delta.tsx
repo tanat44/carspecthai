@@ -17,7 +17,10 @@ export function Delta({
 }: Props) {
   const diff = value - referenceValue;
   const sign = diff > 0 ? "+" : "-";
-  let text = `(${sign}${Math.abs(diff)}${suffix && ` ${suffix}`})`;
+  const absValue = Math.abs(diff);
+  let valueText = absValue.toFixed(2);
+  if (absValue > 1) valueText = absValue.toFixed(0);
+  let text = `(${sign}${valueText}${suffix && ` ${suffix}`})`;
   if (diff === 0) {
     text = "(เท่ากัน)";
   }

@@ -1,0 +1,34 @@
+name: Deepal S07
+manufacture: Changan
+releaseDate: 2025
+
+physical:
+  width: 1930
+  length: 4750
+  height: 1625
+  wheelbase: 2900
+  floorHeight: 165
+
+engine:
+  fuelType: electric
+  drive: rwd
+  electricPowerHp: 258
+  electricPowerPs: 190
+  maxTorque: 485
+  batteryCapacity: 68.8
+  acCharge: 6.6
+  dcCharge: 167
+
+performance:
+  to100: 7.9
+
+options: 
+    keyless: true
+    bsm: true
+    ldw: true
+    la: true
+    acc: true  
+
+trims: 
+- name: New
+  price: 1219000

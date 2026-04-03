@@ -22,10 +22,15 @@ export class Car {
     const variableText = await readYmlVariable();
 
     // fetch this car spec and parse yml
-    const text = (await fs.readFile(filePath)).toString();
-    const data = parse(variableText + "\n" + text);
-    data.slug = path.parse(filePath).name;
-    return Car.parse(data);
+    try {
+      const text = (await fs.readFile(filePath)).toString();
+      const data = parse(variableText + "\n" + text);
+      data.slug = path.parse(filePath).name;
+      return Car.parse(data);
+    } catch (err) {
+      console.error("error reading", filePath, err);
+      throw err;
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

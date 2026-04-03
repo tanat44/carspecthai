@@ -1,0 +1,55 @@
+name: Deepal S05
+manufacture: Changan
+releaseDate: 2025
+
+physical:
+  width: 1900
+  length: 4620
+  height: 1600
+  wheelbase: 2880
+  floorHeight: 169
+
+engine:
+  fuelType: electric
+  drive: rwd
+  electricPowerHp: 238
+  electricPowerPs: 175
+  maxTorque: 470
+  batteryCapacity: 56.12
+  acCharge: 7.0
+  dcCharge: 151
+
+performance:
+  to100: 7.3
+
+options: 
+    keyless: true
+    bsm: true
+    ldw: true
+    la: true
+    acc: true  
+
+trims: 
+- name: BEV Lite
+  price: 799000
+- name: BEV Plus
+  price: 849000
+- name: BEV Max
+  price: 899000
+- name: REEV Plus
+  price: 949000
+  engine: &reev_engine
+    fuelType: gasoline
+    hybrid: true
+    drive: rwd
+    electricPowerHp: 218
+    electricPowerPs: 160
+    batteryCapacity: 27.28
+    acCharge: 7.0
+    dcCharge: 54.5
+  performance: &reev_performance
+    to100: 7.9
+- name: REEV Max
+  price: 999000
+  engine: *reev_engine
+  performance: *reev_performance

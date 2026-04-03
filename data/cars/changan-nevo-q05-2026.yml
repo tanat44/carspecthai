@@ -1,0 +1,36 @@
+name: Nevo Q05
+manufacture: Changan
+releaseDate: 2026
+
+physical:
+  width: 1855
+  length: 4435
+  height: 1600
+  wheelbase: 2735
+  floorHeight: 170
+
+engine:
+  fuelType: electric
+  drive: rwd
+  electricPowerHp: 163
+  electricPowerPs: 120
+  maxTorque: 462
+  batteryCapacity: 51.9
+  acCharge: 6.6
+  dcCharge: 162
+
+performance:
+  to100: 8.2
+
+options: 
+    keyless: true
+    bsm: true
+    ldw: true
+    la: true
+    acc: true  
+
+trims: 
+- name: Max
+  price: 699999
+- name: Ultra
+  price: 699999

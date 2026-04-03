@@ -1,0 +1,45 @@
+name: Yaris Ativ
+manufacture: Toyota
+releaseDate: 2017
+
+physical:
+  width: 1740
+  length: 4425
+  height: 1480
+  wheelbase: 2620
+  floorHeight: 160
+
+engine:
+  name: 3NR-VE
+  fuelType: gasoline
+  displacement: 1197
+
+performance:
+  to100: 14.04
+  source: *sourceHlm
+  
+trims: 
+- name: Sport
+  price: 569000
+- name: Smart
+  price: 599000
+- name: Premium
+  price: 679000
+- name: Nightshade
+  price: 709000
+- name: HEV Premium
+  price: 709000
+  engine: &hybrid_engine
+    name: 3NR-VEX
+    fuelType: gasoline
+    hybrid: true
+    displacement: 1496
+    powerKw: 67
+    powerPs: 91
+  performance: &hybrid_performance
+    to100: 9.75
+    source: *sourceHlm
+- name: HEV GR Sport
+  price: 729000
+  engine: *hybrid_engine
+  performance: *hybrid_performance

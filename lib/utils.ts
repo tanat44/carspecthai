@@ -24,7 +24,7 @@ export async function getAllCarFilePaths(): Promise<string[]> {
   });
   const paths: string[] = [];
   files.forEach((file) => {
-    if (file.isDirectory()) return;
+    if (file.isDirectory() || !file.name.endsWith("yml")) return;
     paths.push(path.join(dir, file.name));
   });
   return paths;
@@ -42,9 +42,20 @@ export async function readYml(path: string): Promise<object> {
   return object;
 }
 
+export function trimTrailingZero(text: string): string {
+  let out = "";
+  for (let i = text.length - 1; i >= 0; --i) {
+    if (text.charAt(i) === "0") continue;
+    out = text.charAt(i) + out;
+  }
+  if (out.charAt(out.length - 1) === ".") out = out.slice(0, out.length - 1);
+  return out;
+}
+
 export function priceToText(price: number): string {
-  if (Math.floor(price / 1e6) > 0) return (price / 1e6).toFixed(3) + " ล้าน";
-  return (price / 1e5).toFixed(3) + " แสน";
+  if (Math.floor(price / 1e6) > 0)
+    return trimTrailingZero((price / 1e6).toFixed(3)) + " ล้าน";
+  return trimTrailingZero((price / 1e5).toFixed(3)) + " แสน";
 }
 
 export function numberColorClassName(sign: number) {
