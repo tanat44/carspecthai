@@ -22,5 +22,5 @@ export function WheelBaseCompare({ trim, referenceTrim }: Props) {
     );
   }, [ref]);
 
-  return <div ref={ref} />;
+  return <div ref={ref} className="flex justify-center" />;
 }

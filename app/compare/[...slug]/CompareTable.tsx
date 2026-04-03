@@ -19,6 +19,7 @@ import { PickCarDialog } from "./PickCarDialog";
 import { FrontCompare } from "@/components/dimension/FrontCompare";
 import { SideCompare } from "@/components/dimension/SideCompare";
 import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
+import { priceToText } from "@/lib/utils";
 
 const invoices = [
   {
@@ -119,7 +120,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           <TableRow>
             <TableHead className="w-[100px]">ฟีเจอร์</TableHead>
             {trims.map((trim) => (
-              <TableHead key={trim.slug}>
+              <TableHead key={trim.slug} className="text-center">
                 {trim.car?.manufacture} {trim.car?.name} ({trim.name})
               </TableHead>
             ))}
@@ -127,44 +128,72 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
         </TableHeader>
         <TableBody>
           <TableRow>
-            <TableCell className="font-medium">พลังงาน</TableCell>
+            <TableCell className="font-medium text-left">ราคา</TableCell>
+            {trims.map((trim) => {
+              const diffPrice =
+                (trim?.price ?? 0) - (referenceTrim?.price ?? 0);
+              const sign = diffPrice > 0 ? "+" : "-";
+              const colorClass =
+                diffPrice > 0 ? "text-red-400" : "text-green-400";
+              const isRef = trim === referenceTrim;
+
+              return (
+                <TableCell key={trim.slug} className="text-center">
+                  <div className="flex flex-row gap-2 justify-center">
+                    {trim.priceText}
+                    {!isRef && (
+                      <div
+                        className={`${colorClass}`}
+                      >{`(${sign}${priceToText(diffPrice)})`}</div>
+                    )}
+                  </div>
+                </TableCell>
+              );
+            })}
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium text-left">พลังงาน</TableCell>
             {trims.map((trim) => (
-              <TableHead key={trim.slug}>
+              <TableCell key={trim.slug}>
                 {trim.engine && "ไฮบริด "}
                 {trim.engine?.fuelType}
-              </TableHead>
+              </TableCell>
             ))}
           </TableRow>
           <TableRow>
-            <TableCell className="font-medium">มิติด้านหน้า</TableCell>
+            <TableCell className="font-medium text-left">
+              มิติด้านหน้า
+            </TableCell>
             {trims.map((trim) => (
-              <TableHead key={trim.slug}>
+              <TableCell key={trim.slug}>
                 <FrontCompare
                   trim={trim}
                   referenceTrim={referenceTrim}
                   showReference={trim !== referenceTrim}
                 />
-              </TableHead>
+              </TableCell>
             ))}
           </TableRow>
           <TableRow>
-            <TableCell className="font-medium">มิติด้านข้าง</TableCell>
+            <TableCell className="font-medium text-left">
+              มิติด้านข้าง
+            </TableCell>
             {trims.map((trim) => (
-              <TableHead key={trim.slug}>
+              <TableCell key={trim.slug}>
                 <SideCompare
                   trim={trim}
                   referenceTrim={referenceTrim}
                   showReference={trim !== referenceTrim}
                 />
-              </TableHead>
+              </TableCell>
             ))}
           </TableRow>
           <TableRow>
-            <TableCell className="font-medium">ระยะฐานล้อ</TableCell>
+            <TableCell className="font-medium text-left">ระยะฐานล้อ</TableCell>
             {trims.map((trim) => (
-              <TableHead key={trim.slug}>
+              <TableCell key={trim.slug}>
                 <WheelBaseCompare trim={trim} referenceTrim={referenceTrim} />
-              </TableHead>
+              </TableCell>
             ))}
           </TableRow>
         </TableBody>

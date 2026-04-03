@@ -23,5 +23,5 @@ export function SideCompare({ trim, referenceTrim, showReference }: Props) {
     );
   }, [ref]);
 
-  return <div ref={ref} />;
+  return <div ref={ref} className="flex justify-center" />;
 }

@@ -1,4 +1,5 @@
 import { Engine, Options, Physical } from "./types";
+import { priceToText } from "./utils";
 
 const THIS_YEAR = new Date().getFullYear();
 
@@ -31,8 +32,6 @@ export class Spec {
 
   get priceText(): string {
     if (!this.price) return "-";
-    if (Math.floor(this.price / 1e6) > 0)
-      return (this.price / 1e6).toFixed(3) + "ล้าน";
-    return (this.price / 1e5).toFixed(3) + "แสน";
+    return priceToText(this.price);
   }
 }

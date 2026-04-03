@@ -41,3 +41,8 @@ export async function readYml(path: string): Promise<object> {
   const object = parse(text);
   return object;
 }
+
+export function priceToText(price: number): string {
+  if (Math.floor(price / 1e6) > 0) return (price / 1e6).toFixed(3) + "ล้าน";
+  return (price / 1e5).toFixed(3) + "แสน";
+}
