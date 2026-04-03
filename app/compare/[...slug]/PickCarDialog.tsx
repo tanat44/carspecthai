@@ -23,7 +23,7 @@ type Props = {
 export function PickCarDialog({ gallery, disabledCars, onCarPick }: Props) {
   return (
     <Dialog>
-      <DialogTrigger render={<Button variant="outline">เพิ่มรถ</Button>} />
+      <DialogTrigger render={<Button>เลือกรุ่น</Button>} />
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
           <DialogTitle>เลือกรุ่น</DialogTitle>

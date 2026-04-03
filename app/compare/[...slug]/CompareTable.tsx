@@ -1,5 +1,9 @@
 "use client";
 
+import { FrontCompare } from "@/components/dimension/FrontCompare";
+import { SideCompare } from "@/components/dimension/SideCompare";
+import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -14,57 +18,10 @@ import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { Gallery } from "@/lib/Gallery";
 import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
+import { priceToText } from "@/lib/utils";
+import { Trash } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { PickCarDialog } from "./PickCarDialog";
-import { FrontCompare } from "@/components/dimension/FrontCompare";
-import { SideCompare } from "@/components/dimension/SideCompare";
-import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
-import { priceToText } from "@/lib/utils";
-
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-];
 
 type Props = {
   gallery: Gallery;
@@ -99,29 +56,51 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
 
   const referenceTrim = trims[0];
 
+  function deleteTrim(deleteTrim: Trim) {
+    const newTrims = [...trims];
+    const index = newTrims.indexOf(deleteTrim);
+    newTrims.splice(index, 1);
+
+    let newPath = "/compare";
+    for (const trim of newTrims) {
+      newPath += `/${trim.car?.slug}/${trim.slug}`;
+    }
+    router.push(newPath);
+  }
+
   return (
     <div className="h-lvh flex flex-col items-center px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
-      <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl">
-        เปรียบเทียบ
-      </h1>{" "}
+      <div className="flex flex-row gap-2">
+        <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl">
+          เปรียบเทียบสเปกรถ
+        </h1>
+        {queryTrimSlugs.length < MAX_COMPARE_COUNT && (
+          <PickCarDialog
+            gallery={gallery}
+            onCarPick={handleCarPick}
+            disabledCars={queryTrimSlugs}
+          />
+        )}
+      </div>
       <p className="max-w-3xl text-base text-balance text-muted-foreground sm:text-lg ">
         {getTitle(trims)}
       </p>
-      {queryTrimSlugs.length < MAX_COMPARE_COUNT && (
-        <PickCarDialog
-          gallery={gallery}
-          onCarPick={handleCarPick}
-          disabledCars={queryTrimSlugs}
-        />
-      )}
+
       <div className="pt-4"></div>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">ฟีเจอร์</TableHead>
             {trims.map((trim) => (
-              <TableHead key={trim.slug} className="text-center">
-                {trim.car?.manufacture} {trim.car?.name} ({trim.name})
+              <TableHead key={trim.slug}>
+                <div className="flex flex-row gap-2 justify-center align-items-center">
+                  <div className="align-middle pt-1">
+                    {trim.car?.manufacture} {trim.car?.name} ({trim.name})
+                  </div>
+                  <Button onClick={() => deleteTrim(trim)}>
+                    <Trash size={16} />
+                  </Button>
+                </div>
               </TableHead>
             ))}
           </TableRow>
@@ -132,7 +111,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
             {trims.map((trim) => {
               const diffPrice =
                 (trim?.price ?? 0) - (referenceTrim?.price ?? 0);
-              const sign = diffPrice > 0 ? "+" : "-";
+              const sign = diffPrice > 0 ? "+" : "";
               const colorClass =
                 diffPrice > 0 ? "text-red-400" : "text-green-400";
               const isRef = trim === referenceTrim;

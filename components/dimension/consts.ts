@@ -1,5 +1,5 @@
 export const REF_RENDER_STYLE = {
-  fill: "yellow",
-  stroke: "orange",
-  opacity: 0.3,
+  fill: "#dfdae6",
+  stroke: "rgb(172, 89, 255)",
+  opacity: 0.4,
 };

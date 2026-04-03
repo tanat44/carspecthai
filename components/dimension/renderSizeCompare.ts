@@ -16,6 +16,16 @@ export function renderSizeCompare(
   const layer = new Konva.Layer();
   stage.add(layer);
 
+  if (showReference) {
+    const refDrawing = new Konva.Rect({
+      x: 0,
+      y: stage.height() - referenceSize.height,
+      ...referenceSize,
+      ...REF_RENDER_STYLE,
+    });
+    layer.add(refDrawing);
+  }
+
   // draw front
   const front = new Konva.Rect({
     x: 0,
@@ -26,14 +36,4 @@ export function renderSizeCompare(
     opacity: 1,
   });
   layer.add(front);
-
-  if (showReference) {
-    const refDrawing = new Konva.Rect({
-      x: 0,
-      y: stage.height() - referenceSize.height,
-      ...referenceSize,
-      ...REF_RENDER_STYLE,
-    });
-    layer.add(refDrawing);
-  }
 }
