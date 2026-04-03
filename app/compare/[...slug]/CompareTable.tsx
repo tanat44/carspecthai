@@ -106,6 +106,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
                       </div>
                     }
                     trim={trim}
+                    isReference={trim === referenceTrim}
                   />
                   {trims.length > 0 && trim === referenceTrim && (
                     <ReferenceBadge />

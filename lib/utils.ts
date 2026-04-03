@@ -3,6 +3,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { twMerge } from "tailwind-merge";
 import { parse } from "yaml";
+import { ModelTrimSlug } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -70,4 +71,18 @@ export function baseAssetPath(): string {
     return "";
   }
   return "/data";
+}
+
+export function slugToQueryTrims(slug: string[]) {
+  const queryTrims: ModelTrimSlug[] = [];
+  const queryModels = new Set<string>();
+  for (let i = 0; i < slug.length; i += 2) {
+    const trim: ModelTrimSlug = {
+      modelSlug: slug[i],
+      trimSlug: slug[i + 1],
+    };
+    queryTrims.push(trim);
+    queryModels.add(slug[i]);
+  }
+  return queryTrims;
 }

@@ -24,7 +24,7 @@ export function PickCarDialog({ gallery, disabledCars, onCarPick }: Props) {
   return (
     <Dialog>
       <DialogTrigger render={<Button>เลือกรุ่น</Button>} />
-      <DialogContent className="sm:max-w-sm">
+      <DialogContent className="sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>เลือกรุ่น</DialogTitle>
           <DialogDescription>

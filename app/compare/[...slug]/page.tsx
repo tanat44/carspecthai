@@ -2,6 +2,7 @@ import { CompareTable } from "@/app/compare/[...slug]/CompareTable";
 import { CarLibrary } from "@/lib/CarLibrary";
 import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { ModelTrimSlug } from "@/lib/types";
+import { slugToQueryTrims } from "@/lib/utils";
 import { redirect, RedirectType } from "next/navigation";
 import { Slug } from "./types";
 
@@ -17,17 +18,9 @@ export default async function Page({
   // parse slug into compare trims
   const { slug } = await params;
   if (slug.length % 2 !== 0) redirect("/", RedirectType.push);
-  const queryTrimSlugs: ModelTrimSlug[] = [];
+  const queryTrimSlugs: ModelTrimSlug[] = slugToQueryTrims(slug);
   const queryModels = new Set<string>();
-  for (let i = 0; i < slug.length; i += 2) {
-    const trim: ModelTrimSlug = {
-      modelSlug: slug[i],
-      trimSlug: slug[i + 1],
-    };
-    queryTrimSlugs.push(trim);
-    queryModels.add(slug[i]);
-  }
-
+  queryTrimSlugs.forEach((trim) => queryModels.add(trim.modelSlug));
   console.debug("query", queryTrimSlugs);
 
   // find trims
