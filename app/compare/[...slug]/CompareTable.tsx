@@ -110,7 +110,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
                   {trims.length > 0 && trim === referenceTrim && (
                     <ReferenceBadge />
                   )}
-                  {trims.length > 0 && (
+                  {trims.length > 1 && (
                     <Button onClick={() => deleteTrim(trim)}>
                       <Trash size={16} />
                     </Button>
