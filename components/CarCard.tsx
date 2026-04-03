@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { GalleryCar } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
+import { baseAssetPath } from "@/lib/utils";
 import { TrimDropDown } from "./TrimDropDown";
 import { Button } from "./ui/button";
 
@@ -25,7 +26,7 @@ export function CarCard({ car, disabledCars, onClick }: Props) {
         <Card className="relative mx-auto w-full max-w-3xs pt-0 gap-2 pb-2 cursor-pointer">
           <div>
             <img
-              src={`/cars/photos/${car.slug}.png`}
+              src={`${baseAssetPath()}/cars/photos/${car.slug}.png`}
               alt={`${car.name}`}
               className="relative z-20 aspect-video w-full object-cover"
             />

@@ -1,9 +1,10 @@
 "use client";
 
+import { DRAW_SCALE } from "@/lib/consts";
 import { Trim } from "@/lib/Trim";
 import { useEffect, useRef } from "react";
+import { Delta } from "../Delta";
 import { renderWheelBase } from "./renderWheelBase";
-import { DRAW_SCALE } from "@/lib/consts";
 
 type Props = {
   trim: Trim;
@@ -19,8 +20,34 @@ export function WheelBaseCompare({ trim, referenceTrim }: Props) {
       ref.current!,
       (trim.physical?.wheelbase ?? 0) * DRAW_SCALE,
       (referenceTrim.physical?.wheelbase ?? 0) * DRAW_SCALE,
+      (trim.physical?.floorHeight ?? 0) * DRAW_SCALE,
+      (referenceTrim.physical?.floorHeight ?? 0) * DRAW_SCALE,
     );
   }, [ref]);
 
-  return <div ref={ref} className="flex justify-center" />;
+  return (
+    <div className="relative flex flex-col">
+      <div className="flex flex-row gap-1 w-full justify-center">
+        {`ฐานล้อ ${trim.physical?.wheelbase} มม`}
+        {trim !== referenceTrim && (
+          <Delta
+            value={trim.physical?.wheelbase ?? 0}
+            referenceValue={referenceTrim.physical?.wheelbase ?? 0}
+            suffix="มม"
+          />
+        )}
+      </div>
+      <div className="flex flex-row gap-1 w-full justify-center">
+        {`ความสูงใต้ท้อง ${trim.physical?.floorHeight} มม`}
+        {trim !== referenceTrim && (
+          <Delta
+            value={trim.physical?.floorHeight ?? 0}
+            referenceValue={referenceTrim.physical?.floorHeight ?? 0}
+            suffix="มม"
+          />
+        )}
+      </div>
+      <div ref={ref} className="m-auto" />
+    </div>
+  );
 }

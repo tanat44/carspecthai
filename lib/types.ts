@@ -12,15 +12,10 @@ export type Physical = {
   weight: number;
 };
 
-export enum FuelType {
-  Gasoline = "gasoline",
-  Diesel = "diesel",
-}
-
 export type Engine = {
   name: string;
   hybrid: boolean;
-  fuelType: FuelType;
+  fuelType: string;
   displacement: number;
 };
 

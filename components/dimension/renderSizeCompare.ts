@@ -1,6 +1,6 @@
 import { Size } from "@base-ui/react";
 import Konva from "konva";
-import { REF_RENDER_STYLE } from "./consts";
+import { REF_RENDER_STYLE, STAGE_PAD, THIS_RENDER_STYLE } from "./consts";
 
 export function renderSizeCompare(
   ref: HTMLDivElement,
@@ -8,10 +8,12 @@ export function renderSizeCompare(
   referenceSize: Size,
   showReference: boolean,
 ) {
+  const stageHeight = Math.max(size.height, referenceSize.height);
   const stage = new Konva.Stage({
     container: ref,
-    width: Math.max(size.width, referenceSize.width),
-    height: Math.max(referenceSize.height, referenceSize.height),
+    width: Math.max(size.width, referenceSize.width) + 2 * STAGE_PAD,
+    height: stageHeight + 2 * STAGE_PAD,
+    offset: { x: -STAGE_PAD, y: -STAGE_PAD },
   });
   const layer = new Konva.Layer();
   stage.add(layer);
@@ -19,7 +21,7 @@ export function renderSizeCompare(
   if (showReference) {
     const refDrawing = new Konva.Rect({
       x: 0,
-      y: stage.height() - referenceSize.height,
+      y: stageHeight - referenceSize.height,
       ...referenceSize,
       ...REF_RENDER_STYLE,
     });
@@ -29,11 +31,9 @@ export function renderSizeCompare(
   // draw front
   const front = new Konva.Rect({
     x: 0,
-    y: stage.height() - size.height,
+    y: stageHeight - size.height,
     ...size,
-    fill: "transparent",
-    stroke: "black",
-    opacity: 1,
+    ...THIS_RENDER_STYLE,
   });
   layer.add(front);
 }

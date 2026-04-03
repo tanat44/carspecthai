@@ -3,6 +3,9 @@
 import { FrontCompare } from "@/components/dimension/FrontCompare";
 import { SideCompare } from "@/components/dimension/SideCompare";
 import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
+import { ZeroToHundredCompare } from "@/components/performance/ZeroToHundredCompare";
+import { ReferenceBadge } from "@/components/ReferenceBadge";
+import { TrimHover } from "@/components/TrimHover";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -18,7 +21,7 @@ import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { Gallery } from "@/lib/Gallery";
 import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
-import { priceToText } from "@/lib/utils";
+import { numberColorClassName, priceToText } from "@/lib/utils";
 import { Trash } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { PickCarDialog } from "./PickCarDialog";
@@ -68,6 +71,8 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
     router.push(newPath);
   }
 
+  const tableClass = trims.length === 1 ? "max-w-xl" : "";
+
   return (
     <div className="h-lvh flex flex-col items-center px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
       <div className="flex flex-row gap-2">
@@ -87,16 +92,24 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
       </p>
 
       <div className="pt-4"></div>
-      <Table>
+      <Table className={`${tableClass}`}>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">ฟีเจอร์</TableHead>
             {trims.map((trim) => (
               <TableHead key={trim.slug}>
-                <div className="flex flex-row gap-2 justify-center align-items-center">
-                  <div className="align-middle pt-1">
-                    {trim.car?.manufacture} {trim.car?.name} ({trim.name})
-                  </div>
+                <div className="flex flex-row gap-2 justify-center items-center">
+                  <TrimHover
+                    title={
+                      <div className="align-middle pt-1">
+                        {trim.car?.manufacture} {trim.car?.name} ({trim.name})
+                      </div>
+                    }
+                    trim={trim}
+                  />
+                  {trims.length > 0 && trim === referenceTrim && (
+                    <ReferenceBadge />
+                  )}
                   <Button onClick={() => deleteTrim(trim)}>
                     <Trash size={16} />
                   </Button>
@@ -112,8 +125,6 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
               const diffPrice =
                 (trim?.price ?? 0) - (referenceTrim?.price ?? 0);
               const sign = diffPrice > 0 ? "+" : "";
-              const colorClass =
-                diffPrice > 0 ? "text-red-400" : "text-green-400";
               const isRef = trim === referenceTrim;
 
               return (
@@ -122,7 +133,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
                     {trim.priceText}
                     {!isRef && (
                       <div
-                        className={`${colorClass}`}
+                        className={`${numberColorClassName(-diffPrice)}`}
                       >{`(${sign}${priceToText(diffPrice)})`}</div>
                     )}
                   </div>
@@ -133,15 +144,25 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           <TableRow>
             <TableCell className="font-medium text-left">พลังงาน</TableCell>
             {trims.map((trim) => (
+              <TableCell key={trim.slug}>{trim.engineText}</TableCell>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium text-left">
+              อัตราเร่ง 0-100
+            </TableCell>
+            {trims.map((trim) => (
               <TableCell key={trim.slug}>
-                {trim.engine && "ไฮบริด "}
-                {trim.engine?.fuelType}
+                <ZeroToHundredCompare
+                  trim={trim}
+                  referenceTrim={referenceTrim}
+                />
               </TableCell>
             ))}
           </TableRow>
           <TableRow>
             <TableCell className="font-medium text-left">
-              มิติด้านหน้า
+              ขนาดด้านหน้า
             </TableCell>
             {trims.map((trim) => (
               <TableCell key={trim.slug}>
@@ -155,7 +176,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           </TableRow>
           <TableRow>
             <TableCell className="font-medium text-left">
-              มิติด้านข้าง
+              ขนาดด้านข้าง
             </TableCell>
             {trims.map((trim) => (
               <TableCell key={trim.slug}>

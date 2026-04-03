@@ -11,6 +11,7 @@ physical:
 
 engine:
   name: A25A-FXS
+  fuelType: gasoline
   hybrid: true
   displacement: 2487
   battery:

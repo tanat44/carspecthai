@@ -28,6 +28,9 @@ jobs:
       
     - name: build application
       run: npm run build
+
+    - name: copy data asset
+      run: cp -r data out/
       
     - name: deploy cloudflare
       uses: cloudflare/wrangler-action@v3

@@ -59,6 +59,17 @@ export class Trim {
     return this.spec?.priceText ?? this.car?.spec?.priceText;
   }
 
+  get engineText(): string | undefined {
+    const fuelType = this.engine?.fuelType;
+    let output = "";
+    if (fuelType === "gasoline") output += "เครื่องยนต์เบนซิน";
+    else if (fuelType === "diesel") output += "เครื่องยนต์ดีเซล";
+
+    if (this.engine?.hybrid) output += "ไฮบริด";
+
+    return output === "" ? undefined : output;
+  }
+
   get engine() {
     return this.spec?.engine ?? this.car?.spec?.engine;
   }

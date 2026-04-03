@@ -43,6 +43,20 @@ export async function readYml(path: string): Promise<object> {
 }
 
 export function priceToText(price: number): string {
-  if (Math.floor(price / 1e6) > 0) return (price / 1e6).toFixed(3) + "ล้าน";
-  return (price / 1e5).toFixed(3) + "แสน";
+  if (Math.floor(price / 1e6) > 0) return (price / 1e6).toFixed(3) + " ล้าน";
+  return (price / 1e5).toFixed(3) + " แสน";
+}
+
+export function numberColorClassName(sign: number) {
+  if (sign > 0) return "text-green-400";
+  else if (sign < 0) return "text-red-400";
+  return "text-black-400";
+}
+
+export function baseAssetPath(): string {
+  const env = process.env.NODE_ENV;
+  if (env == "development") {
+    return "";
+  }
+  return "/data";
 }

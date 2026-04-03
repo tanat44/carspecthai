@@ -1,4 +1,4 @@
-import { Engine, Options, Physical } from "./types";
+import { Engine, Options, Performance, Physical } from "./types";
 import { priceToText } from "./utils";
 
 const THIS_YEAR = new Date().getFullYear();

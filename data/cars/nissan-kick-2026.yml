@@ -12,8 +12,8 @@ physical:
 
 engine:
   name: HR12DE
+  fuelType: gasoline
   hybrid: true
-  fuelType: gasoline 
   displacement: 1198
 
 performance:
