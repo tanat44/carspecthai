@@ -1,7 +1,7 @@
-import { RootGallery } from "@/app/RootGallery";
 import { Header } from "@/components/Header";
 import { CarLibrary } from "@/lib/CarLibrary";
 import { RankingLinks } from "./RankingLinks";
+import { RootGallery } from "./RootGallery";
 
 export default async function Home() {
   const library = await CarLibrary.instance();

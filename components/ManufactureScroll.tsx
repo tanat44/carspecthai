@@ -1,7 +1,7 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { GalleryManufacture } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
 import { CarCard } from "./CarCard";
+import { ScrollArea } from "./ui/scroll-area";
 
 type Props = {
   manufacture: GalleryManufacture;
@@ -19,8 +19,8 @@ export function ManufactureScroll({
   );
 
   return (
-    <ScrollArea className=" w-48 rounded-md border bg-muted flex-1">
-      <div className="p-2 flex-1">
+    <ScrollArea className="w-48 rounded-md border bg-muted h-100">
+      <div className="p-2">
         <h4 className="mt-2 mb-4 text-base leading-none font-medium text-center">
           {manufacture.name}
         </h4>

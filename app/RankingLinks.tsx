@@ -13,7 +13,7 @@ import { METRIC_TYPES, MetricType } from "@/lib/Metric/types";
 export function RankingLinks() {
   return (
     <Card className="py-0 mt-5">
-      <NavigationMenu className="flex-0 px-4">
+      <NavigationMenu className="px-4">
         <div className="pr-5">จัดอันดับตาม</div>
         <NavigationMenuList className="">
           <NavigationMenuItem className="">
