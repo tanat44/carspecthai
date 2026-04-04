@@ -142,7 +142,9 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           <TableRow>
             <TableCell className="font-medium text-left">พลังงาน</TableCell>
             {trims.map((trim) => (
-              <TableCell key={trim.slug}>{trim.engineText}</TableCell>
+              <TableCell key={trim.slug} className="text-center">
+                {trim.engineText}
+              </TableCell>
             ))}
           </TableRow>
           <TableRow>

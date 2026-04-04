@@ -11,7 +11,7 @@ export default async function Home() {
         <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:tracking-tighter">
           เปรียบเทียบสเปกรถที่ขายในไทย
         </h1>
-        <p className="text-base text-balance text-muted-foreground sm:text-lg ">
+        <p className="text-sm text-muted-foreground sm:text-lg ">
           carspecthai.com เพจเดียวที่ให้คุณเปรียบเทียบรถยนต์จากทุกค่าย ทุกยี่ห้อ
           ที่วางขายในเมืองไทย อย่างเจาะลึก ไม่ว่าจะน้ำมัน อีวี กระบะ ไฮบริด
         </p>

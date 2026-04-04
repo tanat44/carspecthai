@@ -54,9 +54,15 @@ export function trimTrailingZero(text: string): string {
 }
 
 export function priceToText(price: number): string {
-  if (Math.abs(Math.floor(price / 1e6)) > 0)
-    return trimTrailingZero((price / 1e6).toFixed(3)) + " ล้าน";
-  return trimTrailingZero((price / 1e5).toFixed(3)) + " แสน";
+  const absPrice = Math.abs(price);
+  console.log(Math.floor(absPrice / 1e5));
+  if (Math.floor(absPrice / 1e6) > 0)
+    return trimTrailingZero((absPrice / 1e6).toFixed(3)) + " ล้าน";
+  else if (Math.floor(absPrice / 1e5) > 0)
+    return trimTrailingZero((absPrice / 1e5).toFixed(3)) + " แสน";
+  else if (Math.floor(absPrice / 1e4) > 0)
+    return trimTrailingZero((absPrice / 1e4).toFixed(2)) + " หมื่น";
+  return trimTrailingZero((absPrice / 1e3).toFixed(0)) + " พัน";
 }
 
 export function numberColorClassName(sign: number) {
