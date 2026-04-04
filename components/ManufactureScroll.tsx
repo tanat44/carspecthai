@@ -14,13 +14,17 @@ export function ManufactureScroll({
   disabledCars,
   onClick,
 }: Props) {
+  const sortCars = manufacture.cars.sort(
+    (a, b) => b.releaseYear - a.releaseYear,
+  );
+
   return (
     <ScrollArea className=" w-48 rounded-md border bg-muted flex-1">
       <div className="p-2 flex-1">
         <h4 className="mt-2 mb-4 text-base leading-none font-medium text-center">
           {manufacture.name}
         </h4>
-        {manufacture.cars.map((car) => (
+        {sortCars.map((car) => (
           <CarCard
             car={car}
             key={car.name}

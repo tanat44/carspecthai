@@ -12,11 +12,13 @@ type Props = {
   onClick?: (trim: ModelTrimSlug) => void;
 };
 
-function yearsToColor(years: number): string {
-  if (years < 2) return "bg-green-300";
-  else if (years < 5) return "bg-yellow-100";
-  else if (years < 10) return "bg-orange-200";
-  return "bg-olive-200";
+function yearsToColor(releaseYear: number): string {
+  const yearsOld = new Date().getFullYear() - releaseYear;
+  if (yearsOld === 0) return "bg-green-300";
+  else if (yearsOld === 1) return "bg-lime-100";
+  else if (yearsOld === 2) return "bg-yellow-200";
+  else if (yearsOld === 3) return "bg-amber-100";
+  return "bg-mist-200";
 }
 
 export function CarCard({ car, disabledCars, onClick }: Props) {
@@ -31,7 +33,7 @@ export function CarCard({ car, disabledCars, onClick }: Props) {
               className="relative z-20 aspect-video w-full object-cover"
             />
             <Badge
-              className={`absolute right-2 top-2 z-20 ${yearsToColor(car.releaseYear)}`}
+              className={`absolute right-1 top-1 z-20 ${yearsToColor(car.releaseYear)}`}
             >
               {car.releaseYear}
             </Badge>

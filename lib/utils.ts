@@ -55,7 +55,6 @@ export function trimTrailingZero(text: string): string {
 
 export function priceToText(price: number): string {
   const absPrice = Math.abs(price);
-  console.log(Math.floor(absPrice / 1e5));
   if (Math.floor(absPrice / 1e6) > 0)
     return trimTrailingZero((absPrice / 1e6).toFixed(3)) + " ล้าน";
   else if (Math.floor(absPrice / 1e5) > 0)
