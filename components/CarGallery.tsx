@@ -8,11 +8,17 @@ type Props = {
   gallery: Gallery;
   disabledCars?: ModelTrimSlug[];
   onClick?: (trim: ModelTrimSlug) => void;
+  className?: string;
 };
 
-export function CarGallery({ gallery, disabledCars = [], onClick }: Props) {
+export function CarGallery({
+  gallery,
+  disabledCars = [],
+  onClick,
+  className,
+}: Props) {
   return (
-    <div className="flex flex-row gap-4">
+    <div className={`flex flex-row gap-4 justify-center ${className}`}>
       {gallery.manufactures.map((manufacture) => (
         <ManufactureScroll
           key={manufacture.name}

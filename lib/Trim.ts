@@ -64,7 +64,7 @@ export class Trim {
     let output = "";
     if (fuelType === "gasoline") output += "เครื่องยนต์เบนซิน";
     else if (fuelType === "diesel") output += "เครื่องยนต์ดีเซล";
-    else if (fuelType === "electric") output += "ไฟฟ้า";
+    else if (fuelType === "electric") output += "มอเตอร์ไฟฟ้า";
 
     if (this.engine?.hybrid) output += "ไฮบริด";
 

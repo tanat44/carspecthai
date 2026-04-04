@@ -4,9 +4,10 @@ import { Delta, DeltaUnit } from "@/components/Delta";
 import { FrontCompare } from "@/components/dimension/FrontCompare";
 import { SideCompare } from "@/components/dimension/SideCompare";
 import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
+import { Header } from "@/components/Header";
 import { ZeroToHundredCompare } from "@/components/performance/ZeroToHundredCompare";
 import { ReferenceBadge } from "@/components/ReferenceBadge";
-import { TrimHover } from "@/components/TrimHover";
+import { TrimPopover } from "@/components/TrimPopover";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -74,9 +75,9 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
   const tableClass = trims.length === 1 ? "max-w-xl" : "";
 
   return (
-    <div className="h-lvh flex flex-col items-center px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
-      <div className="flex flex-row gap-2">
-        <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl">
+    <div className="w-full h-full p-10 flex flex-col">
+      <Header className="flex flex-col items-center">
+        <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl m-auto">
           เปรียบเทียบสเปก {getTitle(trims)}
         </h1>
         {queryTrimSlugs.length < MAX_COMPARE_COUNT && (
@@ -86,7 +87,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
             disabledCars={queryTrimSlugs}
           />
         )}
-      </div>
+      </Header>
 
       <div className="pt-4"></div>
       <Table className={`${tableClass}`}>
@@ -96,11 +97,11 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
             {trims.map((trim) => (
               <TableHead key={trim.slug}>
                 <div className="flex flex-row gap-2 justify-center items-center">
-                  <TrimHover
+                  <TrimPopover
                     title={
-                      <div className="align-middle pt-1">
+                      <Button variant="ghost">
                         {trim.car?.manufacture} {trim.car?.name} ({trim.name})
-                      </div>
+                      </Button>
                     }
                     trim={trim}
                     isReference={trim === referenceTrim}

@@ -27,8 +27,8 @@ export function FrontCompare({ trim, referenceTrim, showReference }: Props) {
   return (
     <div className="relative">
       <div ref={ref} className="flex justify-center" />
-      <div className="flex flex-col absolute top-0 left-0 w-full h-full">
-        <div className="flex flex-col w-full justify-center m-auto">
+      <div className="flex flex-col absolute top-0 left-0 w-full h-full items-center">
+        <div className="flex flex-col w-full m-auto items-center">
           {`กว้าง ${trim.physical?.width} มม`}
           {trim !== referenceTrim && (
             <Delta

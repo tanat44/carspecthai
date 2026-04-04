@@ -15,9 +15,9 @@ export function ManufactureScroll({
   onClick,
 }: Props) {
   return (
-    <ScrollArea className="h-72 w-48 rounded-md border bg-muted">
-      <div className="p-4">
-        <h4 className="mb-4 text-base leading-none font-medium">
+    <ScrollArea className=" w-48 rounded-md border bg-muted flex-1">
+      <div className="p-2 flex-1">
+        <h4 className="mt-2 mb-4 text-base leading-none font-medium text-center">
           {manufacture.name}
         </h4>
         {manufacture.cars.map((car) => (

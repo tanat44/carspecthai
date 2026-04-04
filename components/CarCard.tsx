@@ -22,7 +22,7 @@ function yearsToColor(years: number): string {
 export function CarCard({ car, disabledCars, onClick }: Props) {
   return (
     <TrimDropDown car={car} onClick={onClick} disabledCars={disabledCars}>
-      <Button className="bg-transparent w-full h-full">
+      <Button className="bg-transparent w-full h-full pb-2">
         <Card className="relative mx-auto w-full max-w-3xs pt-0 gap-2 pb-2 cursor-pointer">
           <div>
             <img
@@ -38,7 +38,7 @@ export function CarCard({ car, disabledCars, onClick }: Props) {
           </div>
 
           <CardHeader>
-            <CardTitle className="text-xs">{car.name}</CardTitle>
+            <CardTitle className="text-xs text-center">{car.name}</CardTitle>
           </CardHeader>
         </Card>
       </Button>
