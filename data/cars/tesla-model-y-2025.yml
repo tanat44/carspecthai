@@ -15,8 +15,7 @@ engine:
 
 performance:
   to100: 5.9
-  range: 
-    wltp: 488
+  wltp: 488
 
 trims: 
 - name: Premium RWD
@@ -25,8 +24,7 @@ trims:
   price: 1849000
   performance:
     to100: 5.6
-    range: 
-      wltp: 691
+    wltp: 691
 - name: Premium 4WD Long Range
   price: 1949000
   engine:
@@ -34,8 +32,7 @@ trims:
     drive: 4wd
   performance:
     to100: 4.8
-    range: 
-      wltp: 629
+    wltp: 629
 - name: L Premium 4WD
   price: 1999000
   engine:
@@ -43,8 +40,7 @@ trims:
     drive: 4wd
   performance:
     to100: 5.0
-    range: 
-      wltp: 681
+    wltp: 681
 
 catalog:
   - link: default

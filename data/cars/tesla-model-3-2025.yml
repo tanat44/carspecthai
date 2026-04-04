@@ -15,8 +15,7 @@ engine:
 
 performance:
   to100: 6.2
-  range: 
-    wltp: 534
+  wltp: 534
 
 trims: 
 - name: Standard RWD
@@ -37,8 +36,7 @@ trims:
     drive: 4wd
   performance:
     to100: 3.1
-    range: 
-      wltp: 571
+    wltp: 571
 
 catalog:
   - link: default

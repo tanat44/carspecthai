@@ -5,6 +5,7 @@ import { FrontCompare } from "@/components/dimension/FrontCompare";
 import { SideCompare } from "@/components/dimension/SideCompare";
 import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
 import { Header } from "@/components/Header";
+import { RangeCompare } from "@/components/performance/RangeCompare";
 import { ZeroToHundredCompare } from "@/components/performance/ZeroToHundredCompare";
 import { ReferenceBadge } from "@/components/ReferenceBadge";
 import { TrimPopover } from "@/components/TrimPopover";
@@ -132,6 +133,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
                         value={trim.price ?? 0}
                         referenceValue={referenceTrim.price ?? 0}
                         unit={DeltaUnit.Baht}
+                        reverse={true}
                       />
                     )}
                   </div>
@@ -144,6 +146,16 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
             {trims.map((trim) => (
               <TableCell key={trim.slug} className="text-center">
                 {trim.engineText}
+              </TableCell>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium text-left">
+              ระยะทาง WLTP
+            </TableCell>
+            {trims.map((trim) => (
+              <TableCell key={trim.slug}>
+                <RangeCompare trim={trim} referenceTrim={referenceTrim} />
               </TableCell>
             ))}
           </TableRow>

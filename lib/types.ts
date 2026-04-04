@@ -14,13 +14,16 @@ export type Physical = {
 
 export type Engine = {
   name: string;
-  hybrid: boolean;
   fuelType: string;
-  displacement: number;
+  hybrid: boolean;
+  displacement?: number;
+  batteryCapacity?: number;
 };
 
 export type Performance = {
-  to100: number;
+  to100?: number;
+  wltp?: number;
+  nedc?: number;
 };
 
 export type Options = {

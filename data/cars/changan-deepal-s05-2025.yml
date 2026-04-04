@@ -21,6 +21,7 @@ engine:
 
 performance:
   to100: 7.3
+  nedc: 470
 
 options: 
     keyless: true
@@ -49,6 +50,7 @@ trims:
     dcCharge: 54.5
   performance: &reev_performance
     to100: 7.9
+    nedc: 170
 - name: REEV Max
   price: 999000
   engine: *reev_engine

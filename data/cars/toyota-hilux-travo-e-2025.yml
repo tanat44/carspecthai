@@ -22,8 +22,7 @@ engine:
 
 performance:
   to100: 6.7
-  range: 
-    nedc: 315
+  nedc: 315
 
 trims: 
 - name: Double Cap ProTrack

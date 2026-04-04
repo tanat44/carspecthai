@@ -8,6 +8,7 @@ export enum DeltaUnit {
   Distance,
   Baht,
   Time,
+  Km,
 }
 
 type Props = {
@@ -43,6 +44,9 @@ export function Delta({
   } else if (unit === DeltaUnit.Time) {
     valueText = trimTrailingZero(absDiff.toFixed(2));
     suffix = " วินาที";
+  } else if (unit === DeltaUnit.Km) {
+    valueText = absDiff.toFixed(0);
+    suffix = " กม.";
   }
   let text = `(${sign}${valueText}${suffix})`;
   if (diff === 0) {

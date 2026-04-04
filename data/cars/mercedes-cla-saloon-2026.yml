@@ -19,8 +19,7 @@ engine:
 
 performance:
   to100: 6.7
-  range: 
-    wltp: 792
+  wltp: 792
 
 trims: 
 - name: 250+ Eletric

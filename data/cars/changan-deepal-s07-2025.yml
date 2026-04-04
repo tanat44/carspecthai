@@ -21,6 +21,7 @@ engine:
 
 performance:
   to100: 7.9
+  nedc: 485
 
 options: 
     keyless: true
