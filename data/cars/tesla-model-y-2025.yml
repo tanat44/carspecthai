@@ -1,0 +1,50 @@
+name: Model Y
+manufacture: Tesla
+releaseDate: 2025
+
+physical:
+  width: 2129
+  length: 4790
+  height: 1624
+  wheelbase: 2890
+  floorHeight: 167
+
+engine:
+  fuelType: electric
+  drive: rwd
+
+performance:
+  to100: 5.9
+  range: 
+    wltp: 488
+
+trims: 
+- name: Premium RWD
+  price: 1719000
+- name: Premium RWD Long Range
+  price: 1849000
+  performance:
+    to100: 5.6
+    range: 
+      wltp: 691
+- name: Premium 4WD Long Range
+  price: 1949000
+  engine:
+    fuelType: electric
+    drive: 4wd
+  performance:
+    to100: 4.8
+    range: 
+      wltp: 629
+- name: L Premium 4WD
+  price: 1999000
+  engine:
+    fuelType: electric
+    drive: 4wd
+  performance:
+    to100: 5.0
+    range: 
+      wltp: 681
+
+catalog:
+  - link: default

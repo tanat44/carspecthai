@@ -38,14 +38,16 @@ export function WheelBaseCompare({ trim, referenceTrim }: Props) {
         )}
       </div>
       <div className="flex flex-row gap-1 w-full justify-center">
-        {`ความสูงใต้ท้อง ${trim.physical?.floorHeight} มม`}
-        {trim !== referenceTrim && (
-          <Delta
-            value={trim.physical?.floorHeight ?? 0}
-            referenceValue={referenceTrim.physical?.floorHeight ?? 0}
-            suffix="มม"
-          />
-        )}
+        {`ความสูงใต้ท้อง ${trim.physical?.floorHeight ?? "-"} มม`}
+        {trim !== referenceTrim &&
+          trim.physical?.floorHeight &&
+          referenceTrim.physical?.floorHeight && (
+            <Delta
+              value={trim.physical?.floorHeight ?? 0}
+              referenceValue={referenceTrim.physical?.floorHeight ?? 0}
+              suffix="มม"
+            />
+          )}
       </div>
       <div ref={ref} className="m-auto" />
     </div>

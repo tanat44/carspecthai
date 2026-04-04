@@ -12,8 +12,8 @@ physical:
 engine:
   fuelType: electric
   drive: rwd
-  electricPowerHp: 238
-  electricPowerPs: 175
+  electricPowerPs: 238
+  electricPowerKw: 175
   maxTorque: 470
   batteryCapacity: 56.12
   acCharge: 7.0
@@ -53,3 +53,6 @@ trims:
   price: 999000
   engine: *reev_engine
   performance: *reev_performance
+
+catalog:
+  - link: default

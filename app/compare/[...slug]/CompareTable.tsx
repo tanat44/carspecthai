@@ -77,7 +77,7 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
     <div className="h-lvh flex flex-col items-center px-6 py-8 text-center md:py-8 lg:py-20 xl:gap-4">
       <div className="flex flex-row gap-2">
         <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl">
-          เปรียบเทียบสเปกรถ
+          เปรียบเทียบสเปก {getTitle(trims)}
         </h1>
         {queryTrimSlugs.length < MAX_COMPARE_COUNT && (
           <PickCarDialog
@@ -87,9 +87,6 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           />
         )}
       </div>
-      <p className="max-w-3xl text-base text-balance text-muted-foreground sm:text-lg ">
-        {getTitle(trims)}
-      </p>
 
       <div className="pt-4"></div>
       <Table className={`${tableClass}`}>

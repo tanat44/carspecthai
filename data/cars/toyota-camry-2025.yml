@@ -41,4 +41,6 @@ reviews:
     link: https://youtu.be/IJG9cCTfreY?si=UtIF0Z9lTFey-eQn
   - <<: *sourceTheClip
     link: https://youtu.be/bRd2wp0Ah-I?si=LWH-xkPtr2DeHW00
-    
+
+catalog:
+  - link: default

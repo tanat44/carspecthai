@@ -1,0 +1,30 @@
+name: CLA Saloon
+manufacture: Mercedes Benz
+releaseDate: 2026
+
+physical:
+  width: 1820
+  length: 4751
+  height: 1437
+  wheelbase: 2790
+  weight: 2055
+
+engine:
+  fuelType: electric
+  drive: rwd
+  dcCharge: 320
+  electricPowerPs: 272
+  maxTorque: 335
+  batteryCapacity: 85
+
+performance:
+  to100: 6.7
+  range: 
+    wltp: 792
+
+trims: 
+- name: 250+ Eletric
+  price: 2290000
+
+catalog:
+  - link: default

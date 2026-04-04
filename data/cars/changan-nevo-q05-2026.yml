@@ -34,3 +34,6 @@ trims:
   price: 699999
 - name: Ultra
   price: 699999
+
+catalog:
+  - link: default

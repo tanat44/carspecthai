@@ -32,3 +32,6 @@ options:
 trims: 
 - name: New
   price: 1219000
+
+catalog:
+  - link: default

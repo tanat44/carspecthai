@@ -1,0 +1,44 @@
+name: Model 3
+manufacture: Tesla
+releaseDate: 2025
+
+physical:
+  width: 2089
+  length: 4720
+  height: 1440
+  wheelbase: 2875
+  floorHeight: 138
+
+engine:
+  fuelType: electric
+  drive: rwd
+
+performance:
+  to100: 6.2
+  range: 
+    wltp: 534
+
+trims: 
+- name: Standard RWD
+  price: 1149000
+- name: Premium RWD
+  price: 1439000
+  performance:
+    to100: 6.1
+- name: Premium RWD Long Range
+  price: 159900
+  performance:
+    to100: 5.2
+    range:
+      wltp: 750
+- name: Performance 4WD
+  price: 2099000
+  engine:
+    drive: 4wd
+  performance:
+    to100: 3.1
+    range: 
+      wltp: 571
+
+catalog:
+  - link: default

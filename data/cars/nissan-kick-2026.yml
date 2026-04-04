@@ -45,4 +45,6 @@ trims:
 reviews:
   - <<: *sourceAutoLife
     link: https://youtu.be/lTRWGTQDklA?si=pCdPDAFLBwQrLyiY
-    
+
+catalog:
+  - link: default

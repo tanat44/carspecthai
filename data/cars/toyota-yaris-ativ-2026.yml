@@ -43,3 +43,6 @@ trims:
   price: 729000
   engine: *hybrid_engine
   performance: *hybrid_performance
+
+catalog:
+  - link: default
