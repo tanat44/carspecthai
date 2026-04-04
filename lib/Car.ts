@@ -24,7 +24,7 @@ export class Car {
     // fetch this car spec and parse yml
     try {
       const text = (await fs.readFile(filePath)).toString();
-      const data = parse(variableText + "\n" + text);
+      const data = parse(variableText + "\n" + text, { merge: true });
       data.slug = path.parse(filePath).name;
       return Car.parse(data);
     } catch (err) {

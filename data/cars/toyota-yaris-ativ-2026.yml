@@ -8,25 +8,64 @@ physical:
   height: 1480
   wheelbase: 2620
   floorHeight: 160
+  turningRadius: 4.8
 
 engine:
   name: 3NR-VE
   fuelType: gasoline
   displacement: 1197
 
+suspension:
+  front: macphersonStrut
+  rear: torsionBeam
+
 performance:
   to100: 14.04
   source: *sourceHlm
-  
+
+safetyRating:
+  program: aseanNcap
+  rating: 5 
+  year: 2017 
+
+options: &baseOptions 
+  esc: true 
+  tcs: true 
+  abs: true 
+  ebd: true 
+  ba: true 
+  hsa: true 
+  aeb: true 
+  ldw: true 
+  seatMaterial: fabric 
+  numberOfSpeakers: 2 
+
 trims: 
 - name: Sport
   price: 569000
+  options: &sport
+    <<: *baseOptions
 - name: Smart
   price: 599000
+  options: &smart 
+    <<: *sport
+    numberOfSpeakers: 4 
+    ahb: true 
 - name: Premium
   price: 679000
+  options: &premium 
+    <<: *smart 
+    acc: true 
+    bsm: true 
+    rcta: true 
+    epb: true 
+    avh: true 
+    numberOfSpeakers: 6 
 - name: Nightshade
   price: 709000
+  options: &nightshade 
+    <<: *premium 
+    seatMaterial: leather 
 - name: HEV Premium
   price: 709000
   engine: &hybrid_engine
@@ -44,5 +83,15 @@ trims:
   engine: *hybrid_engine
   performance: *hybrid_performance
 
+links:
+- <<: *sourceAutoLife 
+  reviewLink: null 
+  infoLink: https://autolifethailand.tv/offcial-price-toyota-yaris-ativ-my2026/ 
+- <<: *sourceHlm 
+  reviewLink: null 
+  infoLink: https://www.headlightmag.com/2022-08-09-price-toyota-yaris-ativ-02/ 
+
 catalog:
-  - link: default
+  - name: default
+  - name: official
+    link: https://www.toyota.co.th/media/product/series/download/YarisATIV2026_Catalog.pdf
