@@ -1,5 +1,7 @@
 import { Car } from "./Car";
 import { Gallery, GalleryManufacture } from "./Gallery";
+import { calculateMetrics } from "./Metric/calculateMetric";
+import { Metrics } from "./Metric/types";
 import { Trim } from "./Trim";
 import { getAllCarFilePaths } from "./utils";
 
@@ -70,5 +72,9 @@ export class CarLibrary {
     }
 
     return { manufactures };
+  }
+
+  get rankedMatrics(): Metrics {
+    return calculateMetrics(this);
   }
 }

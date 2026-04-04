@@ -1,6 +1,7 @@
 import { RootGallery } from "@/app/RootGallery";
 import { Header } from "@/components/Header";
 import { CarLibrary } from "@/lib/CarLibrary";
+import { RankingLinks } from "./RankingLinks";
 
 export default async function Home() {
   const library = await CarLibrary.instance();
@@ -17,6 +18,7 @@ export default async function Home() {
         </p>
       </Header>
       <RootGallery gallery={library.gallery} className="flex-1" />
+      <RankingLinks />
     </div>
   );
 }

@@ -25,7 +25,7 @@ trims:
   performance:
     to100: 6.1
 - name: Premium RWD Long Range
-  price: 159900
+  price: 1599000
   performance:
     to100: 5.2
     range:

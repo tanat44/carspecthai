@@ -91,3 +91,18 @@ export function slugToQueryTrims(slug: string[]) {
   }
   return queryTrims;
 }
+
+export function sortUndefined(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any[],
+  sortKey: string,
+  reverse: boolean = false,
+) {
+  const output = [...data];
+  const multiply = reverse ? -1 : 1;
+  output.sort((a, b) => {
+    if (!(sortKey in a) || !(sortKey in b)) return -Infinity;
+    return multiply * (b[sortKey] - a[sortKey]);
+  });
+  return output;
+}
