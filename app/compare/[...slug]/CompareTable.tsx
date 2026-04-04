@@ -1,5 +1,6 @@
 "use client";
 
+import { Delta, DeltaUnit } from "@/components/Delta";
 import { FrontCompare } from "@/components/dimension/FrontCompare";
 import { SideCompare } from "@/components/dimension/SideCompare";
 import { WheelBaseCompare } from "@/components/dimension/WheelBaseCompare";
@@ -21,7 +22,6 @@ import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { Gallery } from "@/lib/Gallery";
 import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
-import { numberColorClassName, priceToText } from "@/lib/utils";
 import { Trash } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { PickCarDialog } from "./PickCarDialog";
@@ -122,19 +122,16 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           <TableRow>
             <TableCell className="font-medium text-left">ราคา</TableCell>
             {trims.map((trim) => {
-              const diffPrice =
-                (trim?.price ?? 0) - (referenceTrim?.price ?? 0);
-              const sign = diffPrice > 0 ? "+" : "";
-              const isRef = trim === referenceTrim;
-
               return (
                 <TableCell key={trim.slug} className="text-center">
                   <div className="flex flex-row gap-2 justify-center">
                     {trim.priceText}
-                    {!isRef && (
-                      <div
-                        className={`${numberColorClassName(-diffPrice)}`}
-                      >{`(${sign}${priceToText(diffPrice)})`}</div>
+                    {trim !== referenceTrim && (
+                      <Delta
+                        value={trim.price ?? 0}
+                        referenceValue={referenceTrim.price ?? 0}
+                        unit={DeltaUnit.Baht}
+                      />
                     )}
                   </div>
                 </TableCell>

@@ -3,7 +3,7 @@
 import { DRAW_SCALE } from "@/lib/consts";
 import { Trim } from "@/lib/Trim";
 import { useEffect, useRef } from "react";
-import { Delta } from "../Delta";
+import { Delta, DeltaUnit } from "../Delta";
 import { renderWheelBase } from "./renderWheelBase";
 
 type Props = {
@@ -33,7 +33,7 @@ export function WheelBaseCompare({ trim, referenceTrim }: Props) {
           <Delta
             value={trim.physical?.wheelbase ?? 0}
             referenceValue={referenceTrim.physical?.wheelbase ?? 0}
-            suffix="มม"
+            unit={DeltaUnit.Distance}
           />
         )}
       </div>
@@ -45,7 +45,7 @@ export function WheelBaseCompare({ trim, referenceTrim }: Props) {
             <Delta
               value={trim.physical?.floorHeight ?? 0}
               referenceValue={referenceTrim.physical?.floorHeight ?? 0}
-              suffix="มม"
+              unit={DeltaUnit.Distance}
             />
           )}
       </div>

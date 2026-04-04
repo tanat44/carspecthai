@@ -2,7 +2,7 @@
 
 import { Trim } from "@/lib/Trim";
 import { useEffect, useRef } from "react";
-import { Delta } from "../Delta";
+import { Delta, DeltaUnit } from "../Delta";
 import { Space } from "../Space";
 import { renderSizeCompare } from "./renderSizeCompare";
 
@@ -36,7 +36,7 @@ export function SideCompare({ trim, referenceTrim, showReference }: Props) {
             <Delta
               value={trim.physical?.length ?? 0}
               referenceValue={referenceTrim.physical?.length ?? 0}
-              suffix="มม"
+              unit={DeltaUnit.Distance}
             />
           )}
         </div>
@@ -46,7 +46,7 @@ export function SideCompare({ trim, referenceTrim, showReference }: Props) {
             <Delta
               value={trim.physical?.height ?? 0}
               referenceValue={referenceTrim.physical?.height ?? 0}
-              suffix="มม"
+              unit={DeltaUnit.Distance}
             />
           )}
         </div>

@@ -12,8 +12,8 @@ physical:
 engine:
   fuelType: electric
   drive: rwd
-  electricPowerHp: 163
-  electricPowerPs: 120
+  electricPowerPs: 163
+  electricPowerKw: 120
   maxTorque: 462
   batteryCapacity: 51.9
   acCharge: 6.6

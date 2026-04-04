@@ -1,0 +1,31 @@
+name: GR86
+manufacture: Toyota
+releaseDate: 2021
+
+physical:
+  width: 1775
+  length: 4265
+  height: 1310
+  wheelbase: 2575
+  floorHeight: 130
+  turingRadius: 5.4
+
+engine:
+  name: FA24
+  fuelType: gasoline
+  displacement: 2387
+  transmission: at
+  electricPowerKw: 174
+  electricPowerPs: 237
+  maxTorque: 250
+
+performance:
+  to100: 8.23
+  to100Source: *sourceHlm
+  
+trims: 
+- name: "2021"
+  price: 2999000
+  
+catalog:
+  - link: default

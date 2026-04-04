@@ -1,10 +1,20 @@
-import { numberColorClassName } from "@/lib/utils";
+import {
+  numberColorClassName,
+  priceToText,
+  trimTrailingZero,
+} from "@/lib/utils";
+
+export enum DeltaUnit {
+  Distance,
+  Baht,
+  Time,
+}
 
 type Props = {
   value: number;
   referenceValue: number;
+  unit: DeltaUnit;
   reverse?: boolean;
-  suffix?: string;
   className?: string;
 };
 
@@ -12,15 +22,29 @@ export function Delta({
   value,
   referenceValue,
   reverse = false,
-  suffix,
+  unit,
   className = "",
 }: Props) {
   const diff = value - referenceValue;
   const sign = diff > 0 ? "+" : "-";
-  const absValue = Math.abs(diff);
-  let valueText = absValue.toFixed(2);
-  if (absValue > 1) valueText = absValue.toFixed(0);
-  let text = `(${sign}${valueText}${suffix && ` ${suffix}`})`;
+  const absDiff = Math.abs(diff);
+  let suffix = "";
+  let valueText = "";
+  if (unit === DeltaUnit.Distance) {
+    if (Math.floor(absDiff / 10) > 1) {
+      valueText = trimTrailingZero((absDiff / 10).toFixed(2));
+      suffix = " ซม";
+    } else {
+      valueText = absDiff.toFixed(0);
+      suffix = " มม";
+    }
+  } else if (unit === DeltaUnit.Baht) {
+    valueText = priceToText(absDiff);
+  } else if (unit === DeltaUnit.Time) {
+    valueText = trimTrailingZero(absDiff.toFixed(2));
+    suffix = " วินาที";
+  }
+  let text = `(${sign}${valueText}${suffix})`;
   if (diff === 0) {
     text = "(เท่ากัน)";
   }

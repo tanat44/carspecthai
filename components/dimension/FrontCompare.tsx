@@ -2,7 +2,7 @@
 
 import { Trim } from "@/lib/Trim";
 import { useEffect, useRef } from "react";
-import { Delta } from "../Delta";
+import { Delta, DeltaUnit } from "../Delta";
 import { renderSizeCompare } from "./renderSizeCompare";
 
 type Props = {
@@ -34,7 +34,7 @@ export function FrontCompare({ trim, referenceTrim, showReference }: Props) {
             <Delta
               value={trim.physical?.width ?? 0}
               referenceValue={referenceTrim.physical?.width ?? 0}
-              suffix="มม"
+              unit={DeltaUnit.Distance}
             />
           )}
         </div>
