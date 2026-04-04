@@ -1,7 +1,7 @@
 "use client";
 
 import { Trim } from "@/lib/Trim";
-import { Delta } from "../Delta";
+import { Delta, DeltaUnit } from "../Delta";
 
 type Props = {
   trim: Trim;
@@ -17,7 +17,7 @@ export function ZeroToHundredCompare({ trim, referenceTrim }: Props) {
           value={trim.performance?.to100 ?? 0}
           referenceValue={referenceTrim.performance?.to100 ?? 0}
           reverse={true}
-          suffix="วินาที"
+          unit={DeltaUnit.Time}
         />
       )}
     </div>
