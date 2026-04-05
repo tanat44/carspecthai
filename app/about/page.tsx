@@ -44,7 +44,7 @@ export default function Page() {
             >
               github
             </ButtonLink>
-            โปรเจคโคดเป็น public
+            เป็น public
           </li>
           <li>
             <ButtonLink
@@ -54,7 +54,7 @@ export default function Page() {
               ข้อมูลรถทั้งหมด
             </ButtonLink>
             ถูกทำการ normalize และบันทึกในรูปแบบ yaml
-            เพื่อให้สามารถนำไปใช้วิเคราะห์ เปรียบเทียบ และสำเสนอได้ในหลายรูปแบบ
+            เพื่อให้สามารถนำไปใช้วิเคราะห์ เปรียบเทียบ และนำเสนอได้ในหลายรูปแบบ
           </li>
         </ul>
         <h2>สนใจติดต่อ</h2>
