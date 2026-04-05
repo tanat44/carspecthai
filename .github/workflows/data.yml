@@ -4,6 +4,7 @@
 name: deploy data
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "car-data" ]
 

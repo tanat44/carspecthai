@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/ButtonLink";
+import { Metadata } from "next";
 import Link from "next/link";
 
 export default function Page() {
@@ -65,3 +66,12 @@ export default function Page() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: {
+    template: `About | %s`,
+    default: "About carspecthai.com",
+  },
+  description:
+    "เกี่ยวกับ carspecthai.com เราทำเว็บไซค์นี้มาทำไม อยากร่วมงานกับเรา หรือ อยากสนับสนุนเรา",
+};
