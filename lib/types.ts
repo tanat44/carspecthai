@@ -10,6 +10,7 @@ export type Physical = {
   wheelbase: number;
   floorHeight: number;
   weight: number;
+  turningRadius?: number;
 };
 
 export type Engine = {
@@ -18,6 +19,8 @@ export type Engine = {
   hybrid: boolean;
   displacement?: number;
   batteryCapacity?: number;
+  acCharge?: number;
+  dcCharge?: number;
 };
 
 export type Performance = {

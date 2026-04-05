@@ -13,6 +13,9 @@ export function calculateMetrics(lib: CarLibrary): Metrics {
   metric.range = rangeMetric(lib);
   metric.battery = batteryMetric(lib);
   metric.displacement = displacementMetric(lib);
+  metric.acCharge = acChargeMetric(lib);
+  metric.dcCharge = dcChargeMetric(lib);
+  metric.turningRadius = turningRadiusMetric(lib);
 
   return metric;
 }
@@ -65,19 +68,35 @@ function displacementMetric(lib: CarLibrary): MetricPoint[] {
   return calculateMetric(lib, (trim: Trim) => trim.engine?.displacement);
 }
 
+function acChargeMetric(lib: CarLibrary): MetricPoint[] {
+  return calculateMetric(lib, (trim: Trim) => trim.engine?.acCharge);
+}
+
+function dcChargeMetric(lib: CarLibrary): MetricPoint[] {
+  return calculateMetric(lib, (trim: Trim) => trim.engine?.dcCharge);
+}
+
+function turningRadiusMetric(lib: CarLibrary): MetricPoint[] {
+  return calculateMetric(lib, (trim: Trim) => trim.physical?.turningRadius);
+}
+
 function calculateMetric(
   lib: CarLibrary,
   accessor: (trim: Trim) => number | undefined,
 ): MetricPoint[] {
   let output: MetricPoint[] = [];
   const cars = lib.allCars;
+  let min = Infinity;
+  let max = -Infinity;
   cars.forEach((car) => {
     car.trims.forEach((trim) => {
       const value = accessor(trim);
+      if (value && value > max) max = value;
+      if (value && value < min) min = value;
       const point: MetricPoint = {
         carFullname: trim.car?.manufacture + " " + trim.fullName,
         value,
-        valuePerPrice: value && value / (trim.price ?? Infinity),
+        price: trim.price,
         trim: {
           slug: trim.slug,
           carSlug: trim.car?.slug ?? "",
@@ -85,6 +104,16 @@ function calculateMetric(
       };
       output.push(point);
     });
+  });
+
+  // calculate valueNormalized
+  const range = max - min;
+  output.forEach((metricPoint) => {
+    if (!metricPoint.value) {
+      metricPoint.valueNormalize = undefined;
+      return;
+    }
+    metricPoint.valueNormalize = metricPoint.value / range;
   });
   output = sortUndefined(output, "value");
   return output;

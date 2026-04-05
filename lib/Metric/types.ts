@@ -7,6 +7,9 @@ export const METRIC_TYPES = {
   range: "ระยะทางต่อการชาร์จ WLTP",
   battery: "ขนาดแบตเตอรี่",
   displacement: "ความจุกระบอกสูบ",
+  acCharge: "ชาร์จ AC",
+  dcCharge: "ชาร์จ DC",
+  turningRadius: "วงเลี้ยวกลับรถ",
 };
 export type MetricType = keyof typeof METRIC_TYPES;
 
@@ -17,7 +20,8 @@ export type Metrics = {
 export type MetricPoint = {
   carFullname: string;
   value?: number;
-  valuePerPrice?: number;
+  valueNormalize?: number;
+  price?: number;
   trim: {
     carSlug: string;
     slug: string;
