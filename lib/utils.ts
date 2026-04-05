@@ -106,3 +106,18 @@ export function sortUndefined(
   });
   return output;
 }
+
+export function minMax<T>(
+  data: T[],
+  accessor: (item: T) => number | undefined,
+) {
+  let min = Infinity;
+  let max = -Infinity;
+  data.forEach((item) => {
+    const value = accessor(item);
+    if (!value) return;
+    if (value > max) max = value;
+    if (value < min) min = value;
+  });
+  return { min, max };
+}

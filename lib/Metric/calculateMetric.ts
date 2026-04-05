@@ -80,6 +80,10 @@ function turningRadiusMetric(lib: CarLibrary): MetricPoint[] {
   return calculateMetric(lib, (trim: Trim) => trim.physical?.turningRadius);
 }
 
+function dimensionMetric(lib: CarLibrary): MetricPoint[] {
+  return calculateMetric(lib, (trim: Trim) => trim.physical?.turningRadius);
+}
+
 function calculateMetric(
   lib: CarLibrary,
   accessor: (trim: Trim) => number | undefined,

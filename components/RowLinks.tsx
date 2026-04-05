@@ -27,7 +27,7 @@ export function RowLinks({ title, className, links }: Props) {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <div className="font-bold inline-flex pl-2">{title}</div>
+              <div className="font-bold inline-flex pl-2 pr-2">{title}</div>
               {links.map((link) => (
                 <NavigationMenuLink
                   key={link.name}

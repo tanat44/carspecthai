@@ -8,7 +8,7 @@ export const THIS_RENDER_STYLE = {
   fill: "white",
   stroke: "#5f7a56",
   strokeWidth: 2,
-  opacity: 0.7,
+  opacity: 0.5,
 };
 
 export const STAGE_PAD = 5;

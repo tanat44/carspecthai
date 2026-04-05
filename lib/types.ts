@@ -3,10 +3,13 @@ export type YmlFile = {
   path: string;
 };
 
-export type Physical = {
+export type Dimension = {
   width: number;
   length: number;
   height: number;
+};
+
+export type Physical = Dimension & {
   wheelbase: number;
   floorHeight: number;
   weight: number;
