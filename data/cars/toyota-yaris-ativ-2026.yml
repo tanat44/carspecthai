@@ -17,7 +17,7 @@ engine:
   displacement: 1197
 
 suspension:
-  front: macphersonStrut
+  front: macPhersonStrut
   rear: torsionBeam
 
 performance:
@@ -25,9 +25,9 @@ performance:
   source: *sourceHlm
 
 safetyRating:
-  program: aseanNcap
-  rating: 5 
-  year: 2017 
+  program: latinNcap
+  rating: 2
+  year: 2025 
 
 options: &baseOptions 
   esc: true 

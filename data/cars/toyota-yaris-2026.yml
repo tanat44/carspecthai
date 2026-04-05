@@ -1,0 +1,87 @@
+name: Yaris
+manufacture: Toyota
+releaseDate: 2023
+updateDate: 2026
+
+physical:
+  width: 1730
+  length: 4160
+  height: 1500
+  wheelbase: 2550
+  turningRadius: 5.1
+  floorHeight: 135
+
+engine:
+  name: 3NR-FKE
+  hybrid: false
+  fuelType: gasoline
+  displacement: 1197
+  drive: fwd
+
+suspension:
+  front: macPhersonStrut
+  rear: torsionBeam
+  
+performance:
+  to100: 14.56
+  source: *sourceHlm
+  
+safetyRating:
+  program: latinNcap
+  rating: 2
+  year: 2025 
+
+baseOptions: &baseOptions
+  abs: true
+  ebd: true
+  ba: true
+  esc: true
+  tcs: true
+  hsa: true
+  aeb: true
+  ldw: true
+  airbags: 7
+  seatMaterial: fabric
+  touchscreen: 7
+  appleCarPlay: true
+  androidAuto: true
+  speakers: 4
+  ledHeadlights: true
+
+trims: 
+
+- name: Sport
+  price: 584000
+  options: &sport
+    <<: *baseOptions
+
+- name: Smart
+  price: 644000
+  options: &smart
+    <<: *sport
+    seatMaterial: leather
+    touchscreen: 8
+    pushStart: true
+    smartEntry: true
+    rearCamera: true
+    autoAirCon: true
+
+- name: Premium
+  price: 689000
+  options: &premium
+    <<: *smart
+    bsm: true
+    rcta: true
+    camera360: true
+    frontParkingSensor: true
+    rearParkingSensor: true
+    speakers: 6
+
+links:
+  - <<: *sourceHlm
+    infoLink: https://www.headlightmag.com/preview-acce-fuel-toyota-yaris-hatchback/
+  - <<: *sourceAutoLife
+    infoLink: https://autolifethailand.tv/official-price-toyota-yaris-hatchback-my2026/
+
+catalog:
+  link: https://www.toyota.co.th/media/product/series/download/Yaris2026_Catalog.pdf
