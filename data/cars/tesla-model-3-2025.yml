@@ -3,11 +3,12 @@ manufacture: Tesla
 releaseDate: 2025
 
 physical:
-  width: 2089
+  width: 1850
   length: 4720
   height: 1440
   wheelbase: 2875
   floorHeight: 138
+  turningRadius: 5.7
 
 engine:
   fuelType: electric
@@ -30,10 +31,10 @@ trims:
     to100: 5.2
     range:
       wltp: 750
-- name: Performance 4WD
+- name: Performance AWD
   price: 2099000
   engine:
-    drive: 4wd
+    drive: awd
   performance:
     to100: 3.1
     wltp: 571
