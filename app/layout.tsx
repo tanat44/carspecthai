@@ -19,9 +19,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Carspecthai คาร์สเปกไทย",
+  title: "carspecthai เปรียบเทียบสเปกรถทุกรุ่นขายในเมืองไทย",
   description:
-    "เพจเดียวที่ให้คุณเปรียบเทียบรถยนต์จากทุกค่าย ทุกยี่ห้อที่วางขายในเมืองไทย อย่างเจาะลึก",
+    "เดต้าเบสรถในเมืองไทย สามารถเปรียบเทียบรุ่นรถคนละค่าย จัดอันดับตามราคา ขนาดความยาว ความสูงใต้ท้อง ปริมาตรห้องโดยสาร อัตราเร่ง0-100 ระยะทางต่อการชาร์จ WLTP",
+  keywords: [
+    "เปรียบเทียบรถ",
+    "จัดอันดับรถอีีวี",
+    "เปรียบเทียบรถอีวี",
+    "tesla model 3 vs model y",
+  ],
+  authors: [{ name: "tanat44", url: "https://github.com/tanat44/carspecthai" }],
+  creator: "tanat44",
+  icons: ["favicon.ico", "icon.png"],
 };
 
 export default function RootLayout({
@@ -31,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="th"
       className={cn(
         geistSans.variable,
         geistMono.variable,
