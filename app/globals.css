@@ -134,7 +134,7 @@ body {
   height: 100%;
 }
 
-ul {
+.bullet {
   @apply list-disc pl-4 pt-2 text-sm text-muted-foreground;
 }
 

@@ -18,7 +18,7 @@ export default function Page() {
           เราเป็นกลุ่มคนที่มีความสนใจรถยนต์เป็นงานอดิเรก
           อยากสร้างฐานข้อมูลรถยนต์ในเมืองไทยที่มีคุณภาพ
         </h2>
-        <ul>
+        <ul className="bullet">
           <li>รวบรวมข้อมูลจากทุกผู้ผลิต</li>
           <li>เปรียบเทียบ จัดลำดับ ฟีเจอร์ต่างๆ อย่าง dynamic</li>
           <li>
@@ -35,7 +35,7 @@ export default function Page() {
         </ul>
 
         <h2>Opensource</h2>
-        <ul>
+        <ul className="bullet">
           <li>
             Source code อยู่ใน
             <ButtonLink
