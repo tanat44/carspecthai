@@ -8,6 +8,7 @@ physical:
   height: 1624
   wheelbase: 2890
   floorHeight: 167
+  turningRadius: 6.1
 
 engine:
   fuelType: electric
@@ -41,6 +42,7 @@ trims:
     height: 1668
     wheelbase: 3040
     floorHeight: 167
+    turningRadius: 6.25
   engine:
     fuelType: electric
     drive: awd
