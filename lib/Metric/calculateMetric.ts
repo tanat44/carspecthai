@@ -11,6 +11,8 @@ export function calculateMetrics(lib: CarLibrary): Metrics {
   metric.passengerVolume = passengerVolumeMetric(lib);
   metric.accelTo100 = accelTo100Metric(lib);
   metric.range = rangeMetric(lib);
+  metric.battery = batteryMetric(lib);
+  metric.displacement = displacementMetric(lib);
 
   return metric;
 }
@@ -53,6 +55,14 @@ function accelTo100Metric(lib: CarLibrary): MetricPoint[] {
 
 function rangeMetric(lib: CarLibrary): MetricPoint[] {
   return calculateMetric(lib, (trim: Trim) => trim.rangeWltp);
+}
+
+function batteryMetric(lib: CarLibrary): MetricPoint[] {
+  return calculateMetric(lib, (trim: Trim) => trim.batteryCapacity);
+}
+
+function displacementMetric(lib: CarLibrary): MetricPoint[] {
+  return calculateMetric(lib, (trim: Trim) => trim.engine?.displacement);
 }
 
 function calculateMetric(

@@ -5,6 +5,8 @@ export const METRIC_TYPES = {
   passengerVolume: "ปริมาตรห้องโดยสาร",
   accelTo100: "อัตราเร่ง 0-100",
   range: "ระยะทางต่อการชาร์จ WLTP",
+  battery: "ขนาดแบตเตอรี่",
+  displacement: "ความจุกระบอกสูบ",
 };
 export type MetricType = keyof typeof METRIC_TYPES;
 
