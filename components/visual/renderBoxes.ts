@@ -2,6 +2,7 @@ import { Dimension } from "@/lib/types";
 import { minMax } from "@/lib/utils";
 import { VisualData } from "@/lib/Visual/types";
 import Konva from "konva";
+import { useDimensionStore } from "./dimensionStore";
 
 const SCALE = 0.15;
 const PAD = 1;
@@ -31,14 +32,15 @@ export function renderDimensions(
     const points: number[] = [0, 0, w, 0, w, -h, 0, -h, 0, 0];
 
     const line = new Konva.Line({
+      id: trimData.carFullname.replace(/\s/g, ""),
       points,
       stroke: "black",
       strokeWidth: 2,
       hitStrokeWidth: 2,
     });
-    line.on("mouseover", (line) => {
-      console.log(line);
-      console.log(trimData.carFullname);
+    line.on("mouseover", (e) => {
+      const line = e.target as Konva.Line;
+      useDimensionStore.getState().selectCar(line.attrs.id);
     });
     layer.add(line);
 
@@ -52,4 +54,6 @@ export function renderDimensions(
     });
     layer.add(text);
   }
+
+  return layer;
 }
