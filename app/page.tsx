@@ -1,3 +1,4 @@
+import { AboutButton } from "@/components/AboutButton";
 import { Header } from "@/components/Header";
 import { CarLibrary } from "@/lib/CarLibrary";
 import { RankingLinks } from "./RankingLinks";
@@ -8,6 +9,7 @@ export default async function Home() {
 
   return (
     <div className="w-full h-full p-10 flex flex-col">
+      <AboutButton />
       <Header className="flex flex-col gap-2 justify-center">
         <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:tracking-tighter">
           เปรียบเทียบสเปกรถที่ขายในไทย
