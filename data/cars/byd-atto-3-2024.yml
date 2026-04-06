@@ -1,0 +1,89 @@
+name: Atto 3
+manufacture: BYD
+releaseDate: 2022
+updateDate: 2024
+
+physical:
+  width: 1875
+  length: 4455
+  height: 1615
+  wheelbase: 2720
+  turningRadius: 5.35
+  floorHeight: 175
+  weight: 1680
+
+engine:
+  name: permanentMagnetSynchronousMotor
+  hybrid: false
+  fuelType: electric
+  drive: fwd
+
+suspension:
+  front: macPhersonStrut
+  rear: multiLink
+  
+performance:
+  to100: 7.9
+  source: *sourceAutoLife
+  
+safetyRating:
+  program: euroNcap
+  rating: 5
+  year: 2022
+
+baseOptions: &baseOptions
+  acc: true
+  aeb: true
+  bsm: true
+  rcta: true
+  ldw: true
+  lka: true
+  tpms: true
+  hsa: true
+  hdc: true
+  ahb: true
+  v2l: 2.2
+  esc: true
+  tcs: true
+  abs: true
+  ebd: true
+  ba: true
+  epb: true
+  avh: true
+  360DegreeCamera: true
+  numberAirbags: 7
+  frontParkingSensor: 2
+  rearParkingSensor: 4
+  seatMaterial: leather
+  powerDriverSeat: true
+  powerFrontPassengerSeat: true
+  openGlassRoof: true
+  glassRoofSunshade: true
+  powerTailgate: true
+  ota: true
+  speakersBrand: dirac
+  numberOfSpeakers: 8
+
+trims: 
+- name: Premium
+  price: 669900
+  options: &premium
+    <<: *baseOptions
+
+- name: Extended
+  price: 769900
+  physical:
+    weight: 1750
+  performance:
+    to100: 7.3
+    source: *sourceAutoLife
+  options: &extended
+    <<: *premium
+
+links:
+  - <<: *sourceAutoLife
+    reviewLink: null
+    infoLink: https://autolifethailand.tv/official-price-byd-atto-3-space-grey-motor-show-2026/
+
+catalog:
+  link: https://www.byd.com/material/byd-site/th/product/atto3/atto3-th.pdf
