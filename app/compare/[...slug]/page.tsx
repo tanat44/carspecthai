@@ -2,24 +2,22 @@ import { CompareTable } from "@/app/compare/[...slug]/CompareTable";
 import { CarLibrary } from "@/lib/CarLibrary";
 import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { METRIC_TYPES } from "@/lib/Metric/types";
-import { ModelTrimSlug } from "@/lib/types";
-import { baseAssetPath, slugToQueryTrims } from "@/lib/utils";
+import { baseAssetPath, pathToQueryTrims } from "@/lib/utils";
 import { Metadata } from "next";
 import { redirect, RedirectType } from "next/navigation";
-import { Slug } from "./types";
+import { Suspense } from "react";
+import { ComparePageProps } from "./types";
+import { recursiveModelGenerator } from "./utils";
 
-type Props = {
-  slug?: Slug;
-};
-
-export default async function Page({ params }: { params: Promise<Props> }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<ComparePageProps>;
+}) {
   // parse slug into compare trims
-  const { slug } = await params;
-  if (!slug || slug.length % 2 !== 0) redirect("/", RedirectType.push);
-  const queryTrimSlugs: ModelTrimSlug[] = slugToQueryTrims(slug);
-  const queryModels = new Set<string>();
-  queryTrimSlugs.forEach((trim) => queryModels.add(trim.modelSlug));
-  console.debug("query", queryTrimSlugs);
+  const { slug: queryModels } = await params;
+  if (!queryModels) redirect("/", RedirectType.push);
+  console.debug("query", queryModels);
 
   // find trims
   const library = await CarLibrary.instance();
@@ -30,35 +28,14 @@ export default async function Page({ params }: { params: Promise<Props> }) {
   }
 
   return (
-    <>
+    <Suspense>
       <CompareTable
         gallery={library.gallery}
-        queryTrimSlugs={queryTrimSlugs}
+        queryModels={queryModels}
         plainCars={plainCars}
       />
-    </>
+    </Suspense>
   );
-}
-
-function recursivePropsGenerator(
-  prevSlug: string[],
-  allTrims: ModelTrimSlug[],
-  deep: number,
-  outputProps: Props[],
-) {
-  if (deep == 0) return;
-
-  allTrims.forEach((trim) => {
-    const modelIndex = prevSlug.indexOf(trim.modelSlug);
-    const trimIndex = prevSlug.indexOf(trim.trimSlug);
-    if (trimIndex === modelIndex + 1) {
-      return;
-    }
-
-    const newSlug = [...prevSlug, trim.modelSlug, trim.trimSlug];
-    outputProps.push({ slug: newSlug });
-    recursivePropsGenerator(newSlug, allTrims, deep - 1, outputProps);
-  });
 }
 
 export async function generateStaticParams() {
@@ -66,16 +43,14 @@ export async function generateStaticParams() {
   // return [{ slug: ["asdf", "1234"] }];
 
   const lib = await CarLibrary.instance();
-  const props: Props[] = [];
+  const props: ComparePageProps[] = [];
 
   // generate ModelTrim
-  const modelTrims: ModelTrimSlug[] = [];
+  const modelSlugs: string[] = [];
   lib.allCars.forEach((car) => {
-    Array.from(car.trims.values()).forEach((trim) => {
-      modelTrims.push({ modelSlug: car.slug, trimSlug: trim.slug });
-    });
+    modelSlugs.push(car.slug);
   });
-  recursivePropsGenerator([], modelTrims, MAX_COMPARE_COUNT, props);
+  recursiveModelGenerator([], modelSlugs, MAX_COMPARE_COUNT, props);
 
   return props;
 }
@@ -83,10 +58,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<Props>;
+  params: Promise<ComparePageProps>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const queryTrims = slugToQueryTrims(slug as string[]);
+  const path = slug?.join("/") ?? "";
+  const queryTrims = pathToQueryTrims(path);
   const lib = await CarLibrary.instance();
   const trims = queryTrims
     .map((query) => lib.findTrim(query.modelSlug, query.trimSlug))

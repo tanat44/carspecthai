@@ -47,12 +47,21 @@ export class CarLibrary {
     return carModel;
   }
 
-  findTrim(model: string, trimSlug: string): Trim | undefined {
+  findTrim(model: string, trimSlug?: string): Trim | undefined {
     const carModel = this.findCar(model);
     if (!carModel) return undefined;
 
-    const carTrim = carModel.trims.get(trimSlug);
-    return carTrim;
+    if (trimSlug) return carModel.trims.get(trimSlug);
+
+    // get the most expensive trim if trim isn't specified
+    const sortTrims = Array.from(carModel.trims.values()).sort(
+      (a: Trim, b: Trim) => {
+        const aPrice = a?.price ?? -Infinity;
+        const bPrice = b?.price ?? -Infinity;
+        return bPrice - aPrice;
+      },
+    );
+    return sortTrims[0];
   }
 
   get byManufacture(): Partial<Record<string, Car[]>> {

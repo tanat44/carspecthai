@@ -25,13 +25,14 @@ import { MAX_COMPARE_COUNT } from "@/lib/consts";
 import { Gallery } from "@/lib/Gallery";
 import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
+import { generateCompareUrl } from "@/lib/utils";
 import { Trash } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PickCarDialog } from "./PickCarDialog";
 
 type Props = {
   gallery: Gallery;
-  queryTrimSlugs: ModelTrimSlug[];
+  queryModels: string[];
   plainCars: object[];
 };
 
@@ -45,11 +46,19 @@ function getTitle(trims: Trim[]): string {
   return text;
 }
 
-export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
+export function CompareTable({ gallery, queryModels, plainCars }: Props) {
   const path = usePathname();
   const router = useRouter();
-  function handleCarPick(trim: ModelTrimSlug) {
-    router.push(`${path}/${trim.modelSlug}/${trim.trimSlug}`);
+  const searchParams = useSearchParams();
+
+  const queryTrimSlugs: ModelTrimSlug[] = [];
+  for (let i = 0; i < queryModels.length; ++i) {
+    let text: string | null | undefined = searchParams.get(i.toFixed(0));
+    if (text === null) text = undefined;
+    queryTrimSlugs.push({
+      modelSlug: queryModels[i],
+      trimSlug: text,
+    });
   }
 
   const cars = plainCars.map((data) => Car.parse(data));
@@ -62,16 +71,19 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
 
   const referenceTrim = trims[0];
 
+  function handleCarPick(newTrim: ModelTrimSlug) {
+    const path = generateCompareUrl([...queryTrimSlugs, newTrim]);
+    router.push(path);
+  }
+
   function deleteTrim(deleteTrim: Trim) {
     const newTrims = [...trims];
     const index = newTrims.indexOf(deleteTrim);
     newTrims.splice(index, 1);
 
-    let newPath = "/compare";
-    for (const trim of newTrims) {
-      newPath += `/${trim.car?.slug}/${trim.slug}`;
-    }
-    router.push(newPath);
+    const query = newTrims.map((trim) => trim.modelTrimSlug);
+    const path = generateCompareUrl(query);
+    router.push(path);
   }
 
   return (

@@ -1,7 +1,11 @@
 import { Trim } from "@/lib/Trim";
 import { ModelTrimSlug } from "@/lib/types";
-import { baseAssetPath, slugToQueryTrims } from "@/lib/utils";
-import { useParams, useRouter } from "next/navigation";
+import {
+  baseAssetPath,
+  generateCompareUrl,
+  pathToQueryTrims,
+} from "@/lib/utils";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ReactElement } from "react";
 import { Button } from "./ui/button";
 
@@ -26,6 +30,7 @@ import { ButtonGroup } from "./ui/button-group";
 export function TrimPopover({ title, trim, isReference }: Props) {
   const router = useRouter();
   const params = useParams();
+  const path = usePathname();
   function download() {
     window.open(`${baseAssetPath()}/cars/catalogs/${trim.car?.slug}.pdf`);
   }
@@ -34,7 +39,7 @@ export function TrimPopover({ title, trim, isReference }: Props) {
     const thisModelSlug = trim.car?.slug ?? "";
     const thisTrimSlug = trim.slug;
 
-    const trims = slugToQueryTrims(params.slug as string[]);
+    const trims = pathToQueryTrims(path);
     const otherTrims = trims.filter(
       (t) => t.modelSlug !== thisModelSlug && t.trimSlug !== thisTrimSlug,
     );
@@ -42,10 +47,7 @@ export function TrimPopover({ title, trim, isReference }: Props) {
       { modelSlug: thisModelSlug, trimSlug: thisTrimSlug },
       ...otherTrims,
     ];
-    let newPath = "/compare";
-    for (const trim of newTrims) {
-      newPath += `/${trim.modelSlug}/${trim.trimSlug}`;
-    }
+    const newPath = generateCompareUrl(newTrims);
     router.push(newPath);
   }
 

@@ -45,5 +45,5 @@ export type Options = {
 
 export type ModelTrimSlug = {
   modelSlug: string;
-  trimSlug: string;
+  trimSlug?: string;
 };

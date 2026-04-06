@@ -78,18 +78,21 @@ export function baseAssetPath(): string {
   return "/data";
 }
 
-export function slugToQueryTrims(slug: string[]) {
-  const queryTrims: ModelTrimSlug[] = [];
-  const queryModels = new Set<string>();
-  for (let i = 0; i < slug.length; i += 2) {
+export function pathToQueryTrims(path: string): ModelTrimSlug[] {
+  path = path.replace("/compare", "");
+  const parts = path.split("?");
+  const models = parts[0].split("/").filter((x) => x !== "");
+  const search = new URLSearchParams(parts[1]);
+
+  const output: ModelTrimSlug[] = [];
+  for (let i = 0; i < models.length; i += 1) {
     const trim: ModelTrimSlug = {
-      modelSlug: slug[i],
-      trimSlug: slug[i + 1],
+      modelSlug: models[i],
+      trimSlug: search.get(i.toString()) ?? undefined,
     };
-    queryTrims.push(trim);
-    queryModels.add(slug[i]);
+    output.push(trim);
   }
-  return queryTrims;
+  return output;
 }
 
 export function sortUndefined(
@@ -120,4 +123,17 @@ export function minMax<T>(
     if (value < min) min = value;
   });
   return { min, max };
+}
+
+export function generateCompareUrl(query: ModelTrimSlug[]) {
+  let output: string = "/compare";
+  let searchParam: string = "?";
+
+  for (let i = 0; i < query.length; ++i) {
+    output += `/${query[i].modelSlug}`;
+
+    const trim = query[i].trimSlug;
+    if (trim) searchParam += `${i}=${trim}&`;
+  }
+  return output + searchParam;
 }

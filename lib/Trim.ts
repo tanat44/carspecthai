@@ -3,6 +3,7 @@ import { Car } from "./Car";
 import { DRAW_SCALE, NEDC_TO_WLTP, UNDEFINED_NAME } from "./consts";
 import { GalleryTrim } from "./Gallery";
 import { Spec } from "./Spec";
+import { ModelTrimSlug } from "./types";
 
 export class Trim {
   name: string = UNDEFINED_NAME;
@@ -35,6 +36,13 @@ export class Trim {
       .replace(/\s+/g, "-") // Replace spaces with hyphens
       .slice(0, 50); // Limit to 50 characters
     return slug;
+  }
+
+  get modelTrimSlug(): ModelTrimSlug {
+    return {
+      trimSlug: this.slug,
+      modelSlug: this.car?.slug ?? "",
+    };
   }
 
   /**
