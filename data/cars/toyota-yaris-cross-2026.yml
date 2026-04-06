@@ -1,0 +1,91 @@
+name: Yaris Cross
+manufacture: Toyota
+releaseDate: 2023
+updateDate: 2026
+
+physical:
+  width: 1770
+  length: 4310
+  height: 1615
+  wheelbase: 2620
+  turningRadius: 5.2
+  floorHeight: 210
+  weight: null
+
+engine:
+  name: 2NR-VEX
+  hybrid: true
+  fuelType: gasoline
+  displacement: 1496
+  drive: fwd
+
+suspension:
+  front: macPhersonStrut
+  rear: torsionBeam
+  
+performance:
+  to100: 10.65
+  source: *sourceHlm
+  
+safetyRating:
+  program: aseanNcap
+  rating: 5
+  year: 2025 
+
+baseOptions: &baseOptions
+  abs: true
+  ebd: true
+  ba: true
+  esc: true
+  tcs: true
+  hsa: true
+  epb: true
+  avh: true
+  acc: true
+  aeb: true
+  ldw: true
+  lka: true
+  ahb: true
+  numberOfAirbags: 6
+  rearParkingSensor: 2
+  seatMaterial: leather
+
+trims: 
+  - name: HEV Smart
+    price: 809000
+    options: &smart
+      <<: *baseOptions
+
+  - name: HEV Premium
+    price: 859000
+    options: &premium
+      <<: *smart
+      bsm: true
+      rcta: true
+      frontParkingSensor: 2
+      powerDriverSeat: true
+
+  - name: HEV Premium Luxury
+    price: 909000
+    options: &premiumLuxury
+      <<: *premium
+      fixedGlassRoof: true
+      roofSunshade: true
+      camera360Degree: true
+      tpms: true
+      speakersBrand: pioneer
+      numberOfSpeakers: 6
+      powerTailgate: true
+
+  - name: HEV NightShade
+    price: 929000
+    options: &nightShade
+      <<: *premiumLuxury
+
+links:
+  - <<: *sourceAutoLife
+    reviewLink: https://www.youtube.com/watch?v=NSnFwurMo4U
+    infoLink: https://autolifethailand.tv/official-price-toyota-yaris-cross-hev-my2026/
+
+catalog:
+  link: https://www.toyota.co.th/media/product/series/download/YarisCross_2026_Catalog.pdf

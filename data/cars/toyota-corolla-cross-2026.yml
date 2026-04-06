@@ -1,0 +1,91 @@
+name: Corolla Cross
+manufacture: Toyota
+releaseDate: 2024
+updateDate: 2026
+
+physical:
+  width: 1825
+  length: 4460
+  height: 1620
+  wheelbase: 2640
+  turningRadius: 5.2
+  floorHeight: 161
+  weight: 1430
+
+engine:
+  name: 2ZR-FXE
+  hybrid: true
+  fuelType: gasoline
+  displacement: 1798
+  drive: fwd
+
+suspension:
+  front: macPhersonStrut
+  rear: torsionBeam
+  
+performance:
+  to100: 11.02
+  source: *sourceHlm
+  
+safetyRating:
+  program: aseanNcap
+  rating: 5
+  year: 2020 
+
+baseOptions: &baseOptions
+  abs: true
+  ebd: true
+  ba: true
+  esc: true
+  tcs: true
+  hsa: true
+  epb: true
+  avh: true
+  bsm: true
+  rcta: true
+  numberOfAirbags: 7
+  seatMaterial: leather
+  acc: true
+  aeb: true
+  ldw: true
+  lka: true
+  ahb: true
+
+trims: 
+
+- name: HEV Smart
+  price: 989000
+  options: &hevSmart
+    <<: *baseOptions
+
+- name: HEV Premium
+  price: 1094000
+  options: &hevPremium
+    <<: *hevSmart
+    powerTailgate: true
+    powerDriverSeat: true
+    tpms: true
+
+- name: HEV Premium Luxury
+  price: 1204000
+  options: &hevPremiumLuxury
+    <<: *hevPremium
+    fixedGlassRoof: true
+    roofSunshade: true
+    360DegreeCamera: true
+
+- name: HEV GR Sport
+  price: 1254000
+  options: &hevGrSport
+    <<: *hevPremiumLuxury
+
+links:
+  - <<: *sourceAutoLife
+    reviewLink: https://www.youtube.com/watch?v=oe0Rq_UXLmo
+    infoLink: https://autolifethailand.tv/official-price-toyota-corolla-cross-my2026/
+  - <<: *sourceHlm
+    reviewLink: https://www.headlightmag.com/acceleration-fuel-consumption-toyota-corolla-cross-gr-sport-my2026/
+    infoLink: https://www.headlightmag.com/official-price-toyota-corolla-cross-my2026/
+
+catalog:
+  link: https://www.toyota.co.th/media/product/series/download/New_CorollaCross_Brochure_2024.pdf

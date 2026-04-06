@@ -1,0 +1,81 @@
+name: Atto 1
+manufacture: BYD
+releaseDate: 2026
+updateDate: 2026
+
+physical:
+  width: 1720
+  length: 3925
+  height: 1590
+  wheelbase: 2500
+  turningRadius: 4.95
+  floorHeight: 120
+  weight: 1280
+
+engine:
+  name: eMotor 30.08 kWh
+  hybrid: false
+  fuelType: electric
+  drive: fwd
+
+suspension:
+  front: macPhersonStrut
+  rear: torsionBeam
+  
+performance:
+  to100: null # Note: 0-50 km/h is 4.9 seconds
+  source: null
+  
+safetyRating:
+  program: ancap
+  rating: 5
+  year: 2025 
+
+baseOptions: &baseOptions
+  v2l: true
+  esc: true
+  tcs: true
+  abs: true
+  ebd: true
+  ba: true
+  epb: true
+  avh: true
+  tpms: true
+  ota: true
+  numberOfAirbags: 4
+  rearParkingSensor: true
+  seatMaterial: leather
+  powerDriverSeat: false
+  powerFrontPassengerSeat: false
+  numberOfSpeakers: 4
+
+trims: 
+- name: Dynamic
+  price: 429900
+  options: &dynamic
+    <<: *baseOptions
+
+- name: Premium
+  price: 459900
+  engine:
+    name: eMotor 38.88 kWh
+    hybrid: false
+    fuelType: electric
+    displacement: null
+    drive: fwd
+  options: &premium
+    <<: *dynamic
+    numberOfAirbags: 6
+    powerDriverSeat: true
+    acc: true
+    aeb: true
+    ldw: true
+    ahb: true
+
+links:
+  - <<: *sourceHlm
+    reviewLink: null
+    infoLink: https://www.headlightmag.com/2026-03-23-official-price-byd-atto1/
+
+catalog:
+  link: https://www.reverautomotive.com/model/atto1/overview
