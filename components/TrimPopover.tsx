@@ -56,9 +56,9 @@ export function TrimPopover({ title, trim, isReference }: Props) {
   return (
     <Popover>
       <PopoverTrigger render={title} />
-      <PopoverContent className="flex flex-col w-64 gap-2 p-4">
+      <PopoverContent className="flex flex-col max-w-xs gap-2 p-4">
         <PopoverHeader>
-          <PopoverTitle className="flex flex-row pt-1 pb-2">
+          <PopoverTitle className="flex flex-row pt-1 items-end">
             {trim.fullName}
             <Space />
             <ButtonGroup>
@@ -68,6 +68,7 @@ export function TrimPopover({ title, trim, isReference }: Props) {
                 </Button>
               )}
               <Button
+                disabled={true}
                 size="xs"
                 variant="outline"
                 aria-label="Search"
@@ -77,11 +78,11 @@ export function TrimPopover({ title, trim, isReference }: Props) {
               </Button>
             </ButtonGroup>
           </PopoverTitle>
-          <PopoverDescription className="flex flex-col content-center gap-2">
+          <PopoverDescription className="flex flex-col content-center gap-4 mt-4">
             <img
               src={`${baseAssetPath()}/cars/photos/${trim.car?.slug}.png`}
               alt={`${trim.fullName}`}
-              className="aspect-video w-full"
+              className="object-fill rounded-md w-full"
             />
             <Button variant="outline" onClick={download}>
               ดาวโหลดแคตาล๊อก
@@ -90,11 +91,5 @@ export function TrimPopover({ title, trim, isReference }: Props) {
         </PopoverHeader>
       </PopoverContent>
     </Popover>
-    // <HoverCard>
-    //   <HoverCardTrigger delay={10} closeDelay={100} render={title} />
-    //   <HoverCardContent className="flex flex-col w-64">
-
-    //   </HoverCardContent>
-    // </HoverCard>
   );
 }
