@@ -31,18 +31,16 @@ export function TopMenu({ title, groups }: Props) {
       <MenubarTrigger>{title}</MenubarTrigger>
       <MenubarContent className="w-44">
         {groups.map((group, index) => (
-          <>
-            <MenubarGroup key={group.name}>
+          <div key={group.name}>
+            <MenubarGroup>
               {group.links.map((link) => (
                 <MenubarItem key={link.name}>
                   <Link href={link.href}>{link.name}</Link>
                 </MenubarItem>
               ))}
             </MenubarGroup>
-            {index !== groups.length - 1 && (
-              <MenubarSeparator key={`separator-${group.name}`} />
-            )}
-          </>
+            {index !== groups.length - 1 && <MenubarSeparator />}
+          </div>
         ))}
       </MenubarContent>
     </MenubarMenu>
