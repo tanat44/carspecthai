@@ -1,6 +1,7 @@
 name: Yaris Ativ
 manufacture: Toyota
-releaseDate: 2017
+releaseDate: 2022
+updateDate: 2026
 
 physical:
   width: 1740
@@ -16,7 +17,7 @@ engine:
   displacement: 1197
 
 suspension:
-  front: macphersonStrut
+  front: macPhersonStrut
   rear: torsionBeam
 
 performance:
@@ -24,9 +25,9 @@ performance:
   source: *sourceHlm
 
 safetyRating:
-  program: aseanNcap
-  rating: 5 
-  year: 2017 
+  program: latinNcap
+  rating: 2
+  year: 2025 
 
 options: &baseOptions 
   esc: true 
@@ -89,7 +90,7 @@ links:
   infoLink: https://autolifethailand.tv/offcial-price-toyota-yaris-ativ-my2026/ 
 - <<: *sourceHlm 
   reviewLink: null 
-  infoLink: https://www.headlightmag.com/2022-08-09-price-toyota-yaris-ativ-02/ 
+  infoLink: https://www.headlightmag.com/official-price-toyota-yaris-ativ-my2026/
 
 catalog:
   - name: default

@@ -1,19 +1,75 @@
 acronyms:
-  bsm:
-    name: Blind Spot Monitoring
-    nameTh: เตือนจุดอับสายตา
-  ldw:
-    name: Lane Departure Warning
-    nameTh: เตือนออกนอกเลน
-  la: 
-    name: Lane Assist
-    nameTh: คุมรถในเลน
+# SAFETY AND DRIVING ASSISTANCE
   acc:
     name: Adaptive Cruise Control
-    nameTh: คุมความเร็วอัตโนมัติแบบแปลผลัน
+    nameTh: ระบบควบคุมความเร็วอัตโนมัติแบบแปรผัน
+  aeb:
+    name: Autonomous Emergency Braking
+    nameTh: ระบบเบรกฉุกเฉินอัตโนมัติขณะถอยหลัง
   raeb:
     name: Rear Automatic Emergency Breaking
-    nameTh: เบรกฉุกเฉินอัตโนมัติตอนถอย
+    nameTh: ระบบเบรกฉุกเฉินอัตโนมัติขณะถอยหลัง
+  bsm:
+    name: Blind Spot Monitoring
+    nameTh: ระบบช่วยเตือนจุดอับสายตา
+  rcta:
+    name: Rear Cross Traffic Alert
+    nameTh: ระบบช่วยเตือนขณะถอยรถ
+  ldw:
+    name: Lane Departure Warning
+    nameTh: ระบบเตือนเมื่อออกนอกเลน
+  lka:
+    name: Lane Keeping Assist
+    nameTh: ระบบช่วยควบคุมรถให้อยู่ในเลน
+  lca:
+    name: Lane Change Assist
+    nameTh: ระบบช่วยเปลี่ยนเลน
   tpms:
     name: Tyre Pressure Monitoring System
-    nameTh: วัดลมยาง
+    nameTh: ระบบตรวจวัดแรงดันลมยาง
+  hsa:
+    name: Hill Start Assist
+    nameTh: ระบบช่วยออกตัวบนทางลาดชัน
+  hdc:
+    name: Hill Descent Control
+    nameTh: ระบบควบคุมความเร็วขณะลงทางลาดชัน
+  ahb:
+    name: Auto High Beam
+    nameTh: ระบบเปิดปิดไฟสูงอัตโนมัติ
+  apa:
+    name: Advanced Park Assist
+    nameTh: ระบบช่วยจอดรถอัจฉริยะ
+# BEV/PHEV
+  v2l:
+    name: Vehicle to Load
+    nameTh: ระบบจ่ายไฟให้อุปกรณ์ภายนอก
+# BASIC SAFETY IN 2025
+  esc:
+    name: Electronic Stability Control
+    nameTh: ระบบควบคุมเสถียรภาพการทรงตัว
+  tcs:
+    name: Traction Control System
+    nameTh: ระบบป้องกันการลื่นไถล
+  abs:
+    name: Anti-lock Braking System
+    nameTh: ระบบป้องกันล้อล็อกขณะเบรก
+  ebd:
+    name: Electronic Brake-force Distribution
+    nameTh: ระบบกระจายแรงเบรกอิเล็กทรอนิกส์
+  ba:
+    name: Brake Assist
+    nameTh: ระบบเสริมแรงเบรก
+  epb:
+    name: Electronic Parking Brake
+    nameTh: เบรกมือไฟฟ้า
+  avh:
+    name: Auto Vehicle Hold
+    nameTh: ระบบหน่วงเบรกอัตโนมัติ (Auto Hold)
+#SOFTWARE AND MULTIMEDIA
+  hud:
+    name: Head-up Display
+    nameTh: หน้าจอแสดงข้อมูลบนกระจกหน้า
+  ota:
+    name: Over-the-Air Update
+    nameTh: การอัปเดตซอฟต์แวร์ผ่านเครือข่ายไร้สาย
+  

@@ -1,0 +1,80 @@
+name: Atto 2
+manufacture: BYD
+releaseDate: 2026
+updateDate: 2026
+
+physical:
+  width: 1830
+  length: 4310
+  height: 1675
+  wheelbase: 2620
+  turningRadius: 5.25
+  floorHeight: 170
+  weight: 1570
+
+engine:
+  name: permanentMagnetSynchronousMotor
+  hybrid: false
+  fuelType: electric
+  drive: fwd
+
+suspension:
+  front: macPhersonStrut
+  rear: torsionBeam
+  
+performance:
+  to100: 7.9
+  source: autolifethailand
+  
+safetyRating:
+  program: null
+  rating: null
+  year: null
+
+baseOptions: &baseOptions
+  abs: true
+  ebd: true
+  esc: true
+  tcs: true
+  epb: true
+  avh: true
+  tpms: true
+  acc: true
+  aeb: true
+  ldw: true
+  ahb: true
+  v2l: 3.3
+  ota: true
+  numberOfAirbags: 6
+  frontParkingSensor: true
+  rearParkingSensor: true
+
+trims: 
+  - name: Dynamic
+    price: 629900
+    options: &dynamic
+      <<: *baseOptions
+      alloyWheels: 16
+      numberOfSpeakers: 4
+      rearViewCamera: true
+
+  - name: Premium
+    price: 659900
+    options: &premium
+      <<: *dynamic
+      alloyWheels: 17
+      bsm: true
+      rcta: true
+      360DegreeCamera: true
+      numberOfSpeakers: 8
+      seatMaterial: leather
+      powerDriverSeat: true
+      powerFrontPassengerSeat: true
+
+links:
+  - <<: *sourceAutoLife
+    reviewLink: null
+    infoLink: https://autolifethailand.tv/official-price-byd-atto-2-ev-bev-thailand/
+
+catalog:
+  link: https://www.reverautomotive.com/model/atto2/overview
