@@ -29,7 +29,7 @@ export function CarCard({ car, disabledCars, onClick }: Props) {
           className="relative h-20 w-30 object-fill rounded-t-md"
         />
         <Badge
-          className={`absolute right-1 top-1 z-20 ${yearsToColor(car.releaseYear)}`}
+          className={`absolute right-1 top-1 z-20 text-black ${yearsToColor(car.releaseYear)}`}
         >
           {car.releaseYear}
         </Badge>

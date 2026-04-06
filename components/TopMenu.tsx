@@ -10,19 +10,19 @@ import {
   MenubarTrigger,
 } from "./ui/menubar";
 
-export type LinkItem = {
+export type LinkMenu = {
   name: string;
   href: string;
 };
 
-export type GroupItem = {
+export type GroupMenu = {
   name: string;
-  links: LinkItem[];
+  links: LinkMenu[];
 };
 
 type Props = {
   title: string;
-  groups: GroupItem[];
+  groups: GroupMenu[];
 };
 
 export function TopMenu({ title, groups }: Props) {

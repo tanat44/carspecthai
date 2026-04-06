@@ -1,8 +1,8 @@
 "use client";
 
-import { GroupItem, TopMenu } from "@/components/TopMenu";
+import { GroupMenu, TopMenu } from "@/components/TopMenu";
 
-const groups: GroupItem[] = [
+const groups: GroupMenu[] = [
   {
     name: "all",
     links: [

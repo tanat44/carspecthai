@@ -15,7 +15,7 @@ export default async function Home() {
           รถน้ำมัน รถอีวี รถไฮบริด กระบะ
         </p>
       </Header>
-      <TopMenuBar />
+      <TopMenuBar gallery={library.gallery} />
       <RootGallery gallery={library.gallery} className="flex-1" />
     </div>
   );

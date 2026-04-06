@@ -4,10 +4,12 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { GalleryCar, GalleryTrim } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
+import { baseAssetPath } from "@/lib/utils";
 import { ReactElement } from "react";
 import { Button } from "../ui/button";
 
@@ -60,6 +62,17 @@ export function TrimDropDown({ children, car, disabledCars, onClick }: Props) {
               </DropdownMenuItem>
             );
           })}
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>แคตตาล็อก</DropdownMenuLabel>
+          <DropdownMenuItem
+            onClick={() =>
+              window.open(`${baseAssetPath()}/cars/catalogs/${car?.slug}.pdf`)
+            }
+          >
+            ดาวน์โหลด
+          </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

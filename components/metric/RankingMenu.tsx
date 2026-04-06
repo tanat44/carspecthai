@@ -1,9 +1,9 @@
 "use client";
 
-import { GroupItem, TopMenu } from "@/components/TopMenu";
+import { GroupMenu, TopMenu } from "@/components/TopMenu";
 import { METRIC_TYPES } from "@/lib/Metric/types";
 
-const groups: GroupItem[] = [
+const groups: GroupMenu[] = [
   {
     name: "basic",
     links: [

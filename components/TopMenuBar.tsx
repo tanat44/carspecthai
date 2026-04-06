@@ -1,20 +1,27 @@
 import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
+import { Gallery } from "@/lib/Gallery";
 import { MessageCircleQuestionMark } from "lucide-react";
 import Link from "next/link";
 import { RankingMenu } from "./metric/RankingMenu";
+import { PairMenu } from "./pair/PairMenu";
 import { VisualizeMenu } from "./visualize/VisualizeMenu";
 
-export function TopMenuBar() {
+type Props = {
+  gallery: Gallery;
+};
+
+export function TopMenuBar({ gallery }: Props) {
   return (
     <div className="flex flex-row">
       <Menubar className="w-full sm:w-fit">
         <RankingMenu />
+        <PairMenu gallery={gallery} />
         <VisualizeMenu />
         <MenubarMenu>
           <MenubarTrigger>
-            <Link href="/about" className="flex flex-row gap-1">
+            <Link href="/about" className="flex flex-row">
               ทำไปทำไม
-              <MessageCircleQuestionMark size={16} className="ml-2" />
+              <MessageCircleQuestionMark size={16} className="ml-1" />
             </Link>
           </MenubarTrigger>
         </MenubarMenu>
