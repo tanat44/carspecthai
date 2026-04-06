@@ -18,7 +18,7 @@ export function CarGallery({
   className,
 }: Props) {
   return (
-    <div className={`flex flex-row gap-4 justify-center ${className}`}>
+    <div className={`flex flex-col gap-2 ${className}`}>
       {gallery.manufactures.map((manufacture) => (
         <ManufactureScroll
           key={manufacture.name}

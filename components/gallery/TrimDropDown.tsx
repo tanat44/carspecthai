@@ -9,6 +9,7 @@ import {
 import { GalleryCar, GalleryTrim } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
 import { ReactElement } from "react";
+import { Button } from "../ui/button";
 
 type Props = {
   children: ReactElement;
@@ -28,7 +29,13 @@ export function TrimDropDown({ children, car, disabledCars, onClick }: Props) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={children} />
+      <DropdownMenuTrigger
+        render={
+          <Button variant="ghost" className="size-auto p-0">
+            {children}
+          </Button>
+        }
+      />
       <DropdownMenuContent className="w-50">
         <DropdownMenuGroup>
           <DropdownMenuLabel>รุ่นย่อย</DropdownMenuLabel>

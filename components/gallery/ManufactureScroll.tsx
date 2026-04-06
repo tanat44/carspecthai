@@ -1,7 +1,6 @@
 import { GalleryManufacture } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
 import { CarCard } from "./CarCard";
-import { ScrollArea } from "./ui/scroll-area";
 
 type Props = {
   manufacture: GalleryManufacture;
@@ -19,11 +18,9 @@ export function ManufactureScroll({
   );
 
   return (
-    <ScrollArea className="w-48 rounded-md border bg-muted h-100">
-      <div className="p-2">
-        <h4 className="mt-2 mb-4 text-base leading-none font-medium text-center">
-          {manufacture.name}
-        </h4>
+    <div className="flex flex-col gap-2">
+      <h4 className="font-medium w-full pb-1">{manufacture.name}</h4>
+      <div className="flex flex-row gap-2">
         {sortCars.map((car) => (
           <CarCard
             car={car}
@@ -33,6 +30,6 @@ export function ManufactureScroll({
           />
         ))}
       </div>
-    </ScrollArea>
+    </div>
   );
 }

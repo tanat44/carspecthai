@@ -7,15 +7,17 @@ type Props = {
 };
 export function Header({ children, className }: Props) {
   return (
-    <div className="flex flex-row w-full gap-5 content-center mb-5">
+    <div className="flex flex-row items-center gap-5">
       <Link href="/">
-        <img
-          src="/icon.png"
-          alt="carspecthai.com"
-          className="object-contain h-20"
-        />
+        <div className="h-20 w-20">
+          <img
+            src="/icon.png"
+            alt="carspecthai.com"
+            className="w-full h-full"
+          />
+        </div>
       </Link>
-      <div className={`w-full ${className}`}>{children}</div>
+      <div className={`flex flex-col ${className}`}>{children}</div>
     </div>
   );
 }

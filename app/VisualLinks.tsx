@@ -1,6 +1,6 @@
 "use client";
 
-import { LinkItem, RowLinks } from "@/components/RowLinks";
+import { LinkItem, RowLinks } from "@/components/TopMenu";
 
 export function VisualLinks() {
   const links: LinkItem[] = [

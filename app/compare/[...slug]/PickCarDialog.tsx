@@ -1,10 +1,9 @@
-import { CarGallery } from "@/components/CarGallery";
+import { CarGallery } from "@/components/gallery/CarGallery";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -23,19 +22,19 @@ type Props = {
 export function PickCarDialog({ gallery, disabledCars, onCarPick }: Props) {
   return (
     <Dialog>
-      <DialogTrigger render={<Button>เลือกรุ่น</Button>} />
-      <DialogContent className="sm:max-w-2xl">
+      <DialogTrigger
+        render={<Button variant="outline">เพิ่มรุ่นเปรียบเทียบ</Button>}
+      />
+      <DialogContent className="sm:max-w-2xl h-9/10">
         <DialogHeader>
-          <DialogTitle>เลือกรุ่น</DialogTitle>
-          <DialogDescription>
-            เพิ่มรุ่นรถเพื่อนำมาใช้เปรียบเทียบ
-          </DialogDescription>
+          <DialogTitle>เพิ่มรุ่นรถเพื่อนำมาใช้เปรียบเทียบ</DialogTitle>
         </DialogHeader>
-        <FieldGroup>
+        <FieldGroup className="overflow-auto">
           <CarGallery
             gallery={gallery}
             onClick={onCarPick}
             disabledCars={disabledCars}
+            className="overflow-auto"
           />
         </FieldGroup>
         <DialogFooter>

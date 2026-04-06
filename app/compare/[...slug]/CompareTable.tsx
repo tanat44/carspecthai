@@ -10,6 +10,7 @@ import { ZeroToHundredCompare } from "@/components/performance/ZeroToHundredComp
 import { ReferenceBadge } from "@/components/ReferenceBadge";
 import { TrimPopover } from "@/components/TrimPopover";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -73,11 +74,9 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
     router.push(newPath);
   }
 
-  const tableClass = trims.length === 1 ? "max-w-xl" : "";
-
   return (
     <div className="w-full h-full p-10 flex flex-col">
-      <Header className="flex flex-col items-center">
+      <Header className="flex flex-row gap-2 items-center">
         <h1 className="leading-tighter text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-2xl xl:tracking-tighter max-w-4xl m-auto">
           เปรียบเทียบสเปก {getTitle(trims)}
         </h1>
@@ -89,9 +88,8 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
           />
         )}
       </Header>
-
-      <div className="pt-4"></div>
-      <Table className={`${tableClass}`}>
+      <Separator className="mt-4" />
+      <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">ฟีเจอร์</TableHead>
@@ -111,7 +109,10 @@ export function CompareTable({ gallery, queryTrimSlugs, plainCars }: Props) {
                     <ReferenceBadge />
                   )}
                   {trims.length > 1 && (
-                    <Button onClick={() => deleteTrim(trim)}>
+                    <Button
+                      variant="destructive"
+                      onClick={() => deleteTrim(trim)}
+                    >
                       <Trash size={16} />
                     </Button>
                   )}

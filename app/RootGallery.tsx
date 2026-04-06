@@ -3,7 +3,7 @@
 import { Gallery } from "@/lib/Gallery";
 import { ModelTrimSlug } from "@/lib/types";
 import { useRouter } from "next/navigation";
-import { CarGallery } from "../components/CarGallery";
+import { CarGallery } from "../components/gallery/CarGallery";
 
 type Props = {
   gallery: Gallery;
